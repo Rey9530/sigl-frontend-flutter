@@ -40,7 +40,7 @@ class HomeScreen extends ConsumerWidget {
                   children: [
                     const Icon(Icons.person_outline),
                     const SizedBox(width: 8),
-                    Text(user?.name ?? 'Usuario'),
+                    Text(user?.nombre ?? 'Usuario'),
                   ],
                 ),
               ),
@@ -90,7 +90,7 @@ class HomeScreen extends ConsumerWidget {
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             Text(
-                              user?.name ?? 'Usuario',
+                              user?.nombre ?? 'Usuario',
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                           ],

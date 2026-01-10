@@ -11,6 +11,16 @@ class ApiConstants {
   static const String refreshToken = '/auth/refresh';
   static const String profile = '/auth/profile';
 
+  // Paquetes endpoints
+  static const String paquetes = '/paquetes';
+  static const String paquetesOcr = '/paquetes/ocr';
+  static const String paquetesUpload = '/paquetes/upload-vineta';
+  static const String paquetesRastreo = '/paquetes/rastreo';
+
+  // Puntos endpoints
+  static const String puntos = '/puntos';
+  static const String puntosActivos = '/puntos/activos';
+
   // Headers
   static const String contentType = 'application/json';
   static const String accept = 'application/json';

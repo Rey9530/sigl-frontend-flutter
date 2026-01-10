@@ -1,10 +1,33 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/network/api_client.dart';
-import '../../../../core/errors/exceptions.dart';
 import '../models/user_model.dart';
 
+/// Clase que representa la respuesta de autenticación del backend
+class AuthResponse {
+  final String accessToken;
+  final UserModel user;
+
+  AuthResponse({
+    required this.accessToken,
+    required this.user,
+  });
+
+  factory AuthResponse.fromJson(Map<String, dynamic> json) {
+    return AuthResponse(
+      accessToken: json['access_token'] as String,
+      user: UserModel.fromJson(json['usuario'] as Map<String, dynamic>),
+    );
+  }
+}
+
 abstract class AuthRemoteDataSource {
-  Future<UserModel> login(String email, String password);
+  Future<AuthResponse> login(String email, String password);
+  Future<AuthResponse> register({
+    required String name,
+    required String email,
+    required String password,
+    required String passwordConfirmation,
+  });
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -13,28 +36,36 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this._apiClient);
 
   @override
-  Future<UserModel> login(String email, String password) async {
-    try {
-      final response = await _apiClient.post(
-        '/auth/login',
-        data: {
-          'email': email,
-          'password': password,
-        },
-      );
+  Future<AuthResponse> login(String email, String password) async {
+    final response = await _apiClient.post(
+      '/auth/login',
+      data: {
+        'email': email,
+        'password': password,
+      },
+    );
 
-      final data = response.data;
-      // El backend devuelve { access_token: "...", usuario: { ... } }
-      // Devolvemos el usuario, pero idealmente deberíamos guardar el token aquí o en el repositorio.
-      // Por simplicidad en UserModel.fromJson esperamos la estructura del usuario directamente
-      // o adaptamos aquí.
-      
-      // Ajuste: El backend devuelve `usuario` dentro de la respuesta.
-      return UserModel.fromJson(data['usuario']);
-    } catch (e) {
-      // ApiClient ya debería lanzar excepciones manejadas o DioException
-      rethrow;
-    }
+    return AuthResponse.fromJson(response.data);
+  }
+
+  @override
+  Future<AuthResponse> register({
+    required String name,
+    required String email,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    final response = await _apiClient.post(
+      '/auth/register',
+      data: {
+        'nombre': name,
+        'email': email,
+        'password': password,
+        'password_confirmation': passwordConfirmation,
+      },
+    );
+
+    return AuthResponse.fromJson(response.data);
   }
 }
 

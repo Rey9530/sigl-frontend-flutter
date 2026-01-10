@@ -45,5 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- Camera Permission -->
+	<key>NSCameraUsageDescription</key>
+	<string>La app necesita acceso a la camara para capturar vinetas de paquetes</string>
+	<!-- Photo Library Permission -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>La app necesita acceso a la galeria para seleccionar imagenes de vinetas</string>
 </dict>
 </plist>
