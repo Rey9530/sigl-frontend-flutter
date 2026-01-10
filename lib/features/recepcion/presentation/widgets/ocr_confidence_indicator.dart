@@ -32,7 +32,7 @@ class OcrConfidenceIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: _color.withOpacity(0.1),
+      color: _color.withValues(alpha: 0.1),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -82,19 +82,12 @@ class OcrConfidenceIndicator extends StatelessWidget {
               const SizedBox(height: 12),
               Row(
                 children: [
-                  Icon(
-                    Icons.info_outline,
-                    size: 16,
-                    color: Colors.grey[600],
-                  ),
+                  Icon(Icons.info_outline, size: 16, color: Colors.grey[600]),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       'Verifica y corrige los datos extraidos antes de guardar',
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: Colors.grey[600], fontSize: 12),
                     ),
                   ),
                 ],

@@ -1,22 +1,28 @@
 import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/repositories/recepcion_repository_impl.dart';
+import '../../domain/entities/recepcion_paquete.dart';
 import '../../domain/entities/punto.dart';
 import 'recepcion_state.dart';
 
 class RecepcionNotifier extends StateNotifier<RecepcionState> {
   final RecepcionRepository _repository;
   String? _imagenPath;
-  List<Punto> _puntos = [];
+  RecepcionPaquete? _recepcionActual;
+  List<Punto> _puntosDestino = [];
 
   RecepcionNotifier(this._repository) : super(const RecepcionState.initial());
 
-  /// Procesa una imagen con OCR
-  Future<void> procesarImagenOcr(File imagen) async {
+  /// Crea una recepcion enviando imagen y punto de servicio
+  Future<void> crearRecepcion(File imagen, int puntoServicioId, {String? notas}) async {
     _imagenPath = imagen.path;
-    state = const RecepcionState.procesandoOcr();
+    state = const RecepcionState.procesandoRecepcion();
 
-    final result = await _repository.procesarOcr(imagen);
+    final result = await _repository.crearRecepcion(
+      imagen,
+      puntoServicioId,
+      notas: notas,
+    );
 
     result.fold(
       (failure) {
@@ -25,100 +31,134 @@ class RecepcionNotifier extends StateNotifier<RecepcionState> {
           imagenPath: _imagenPath,
         );
       },
-      (ocrResult) {
-        state = RecepcionState.ocrCompletado(
-          resultado: ocrResult,
+      (recepcion) {
+        _recepcionActual = recepcion;
+        state = RecepcionState.recepcionCreada(
+          recepcion: recepcion,
           imagenPath: _imagenPath!,
         );
-        // Cargar puntos automaticamente
-        _cargarPuntos();
+        // Cargar puntos de destino automaticamente
+        _cargarPuntosDestino();
       },
     );
   }
 
-  /// Carga la lista de puntos activos
-  Future<void> _cargarPuntos() async {
-    final currentState = state;
-    if (currentState is! _OcrCompletado) return;
+  /// Carga los puntos de destino disponibles
+  Future<void> _cargarPuntosDestino() async {
+    final recepcion = _recepcionActual;
+    final imagenPath = _imagenPath;
 
-    state = const RecepcionState.cargandoPuntos();
+    if (recepcion == null || imagenPath == null) return;
+
+    state = RecepcionState.cargandoPuntos(
+      recepcion: recepcion,
+      imagenPath: imagenPath,
+    );
 
     final result = await _repository.obtenerPuntosActivos();
 
     result.fold(
       (failure) {
         state = RecepcionState.error(
-          mensaje: 'Error al cargar puntos: ${failure.message}',
-          imagenPath: _imagenPath,
+          mensaje: 'Error al cargar puntos de destino: ${failure.message}',
+          imagenPath: imagenPath,
+          recepcion: recepcion,
         );
       },
       (puntos) {
-        _puntos = puntos;
+        _puntosDestino = puntos;
         state = RecepcionState.validandoDatos(
-          ocrResult: currentState.resultado,
-          imagenPath: currentState.imagenPath,
-          puntos: puntos,
+          recepcion: recepcion,
+          imagenPath: imagenPath,
+          puntosDestino: puntos,
         );
       },
     );
   }
 
-  /// Crea un nuevo paquete con los datos validados
-  Future<void> crearPaquete({
-    required String remitenteNombre,
-    required String remitenteTelefono,
-    String? remitenteDui,
-    required String destinatarioNombre,
-    required String destinatarioTelefono,
-    required int puntoOrigenId,
+  /// Actualiza los campos de la recepcion
+  Future<void> actualizarRecepcion(Map<String, dynamic> cambios) async {
+    final recepcion = _recepcionActual;
+    final imagenPath = _imagenPath;
+
+    if (recepcion == null || imagenPath == null) return;
+
+    state = RecepcionState.guardandoCambios(
+      recepcion: recepcion,
+      imagenPath: imagenPath,
+      puntosDestino: _puntosDestino,
+    );
+
+    final result = await _repository.actualizarRecepcion(recepcion.id, cambios);
+
+    result.fold(
+      (failure) {
+        state = RecepcionState.error(
+          mensaje: 'Error al guardar cambios: ${failure.message}',
+          imagenPath: imagenPath,
+          recepcion: recepcion,
+          puntosDestino: _puntosDestino,
+        );
+      },
+      (recepcionActualizada) {
+        _recepcionActual = recepcionActualizada;
+        state = RecepcionState.validandoDatos(
+          recepcion: recepcionActualizada,
+          imagenPath: imagenPath,
+          puntosDestino: _puntosDestino,
+        );
+      },
+    );
+  }
+
+  /// Convierte la recepcion en un paquete
+  Future<void> convertirAPaquete({
     required int puntoDestinoId,
-    required double costoEnvio,
-    double? valorPaquete,
     String? descripcion,
     String? notas,
+    String? remitenteNombre,
+    String? remitenteTelefono,
+    String? destinatarioNombre,
+    String? destinatarioTelefono,
+    double? costoEnvio,
+    double? valorPaquete,
   }) async {
-    state = const RecepcionState.guardandoPaquete();
+    final recepcion = _recepcionActual;
+    final imagenPath = _imagenPath;
 
-    // Primero subir la imagen si existe
-    String? imagenUrl;
-    if (_imagenPath != null) {
-      final uploadResult = await _repository.subirVineta(File(_imagenPath!));
-      uploadResult.fold(
-        (failure) {
-          // Continuar sin imagen si falla el upload
-          imagenUrl = null;
-        },
-        (url) {
-          imagenUrl = url;
-        },
-      );
-    }
+    if (recepcion == null || imagenPath == null) return;
 
-    // Crear el paquete
-    final data = {
-      'remitente_nombre': remitenteNombre,
-      'remitente_telefono': remitenteTelefono,
-      if (remitenteDui != null && remitenteDui.isNotEmpty)
-        'remitente_dui': remitenteDui,
-      'destinatario_nombre': destinatarioNombre,
-      'destinatario_telefono': destinatarioTelefono,
-      'punto_origen_id': puntoOrigenId,
+    state = RecepcionState.convirtiendoPaquete(
+      recepcion: recepcion,
+      imagenPath: imagenPath,
+    );
+
+    // Construir datos para conversion
+    final data = <String, dynamic>{
       'punto_destino_id': puntoDestinoId,
-      'costo_envio': costoEnvio,
-      if (valorPaquete != null) 'valor_paquete': valorPaquete,
-      if (descripcion != null && descripcion.isNotEmpty)
-        'descripcion': descripcion,
+      if (descripcion != null && descripcion.isNotEmpty) 'descripcion': descripcion,
       if (notas != null && notas.isNotEmpty) 'notas': notas,
-      if (imagenUrl != null) 'imagen_vineta_url': imagenUrl,
+      if (remitenteNombre != null && remitenteNombre.isNotEmpty)
+        'remitente_nombre': remitenteNombre,
+      if (remitenteTelefono != null && remitenteTelefono.isNotEmpty)
+        'remitente_telefono': remitenteTelefono,
+      if (destinatarioNombre != null && destinatarioNombre.isNotEmpty)
+        'destinatario_nombre': destinatarioNombre,
+      if (destinatarioTelefono != null && destinatarioTelefono.isNotEmpty)
+        'destinatario_telefono': destinatarioTelefono,
+      if (costoEnvio != null) 'costo_envio': costoEnvio,
+      if (valorPaquete != null) 'valor_paquete': valorPaquete,
     };
 
-    final result = await _repository.crearPaquete(data);
+    final result = await _repository.convertirAPaquete(recepcion.id, data);
 
     result.fold(
       (failure) {
         state = RecepcionState.error(
           mensaje: 'Error al crear paquete: ${failure.message}',
-          imagenPath: _imagenPath,
+          imagenPath: imagenPath,
+          recepcion: recepcion,
+          puntosDestino: _puntosDestino,
         );
       },
       (paquete) {
@@ -127,23 +167,63 @@ class RecepcionNotifier extends StateNotifier<RecepcionState> {
     );
   }
 
+  /// Descarta la recepcion actual
+  Future<void> descartarRecepcion(String motivo) async {
+    final recepcion = _recepcionActual;
+
+    if (recepcion == null) return;
+
+    state = RecepcionState.convirtiendoPaquete(
+      recepcion: recepcion,
+      imagenPath: _imagenPath ?? '',
+    );
+
+    final result = await _repository.descartarRecepcion(recepcion.id, motivo);
+
+    result.fold(
+      (failure) {
+        state = RecepcionState.error(
+          mensaje: 'Error al descartar: ${failure.message}',
+          imagenPath: _imagenPath,
+          recepcion: recepcion,
+          puntosDestino: _puntosDestino,
+        );
+      },
+      (_) {
+        reiniciar();
+      },
+    );
+  }
+
   /// Reinicia el estado para una nueva recepcion
   void reiniciar() {
     _imagenPath = null;
-    _puntos = [];
+    _recepcionActual = null;
+    _puntosDestino = [];
     state = const RecepcionState.initial();
   }
 
   /// Vuelve al estado de validacion desde error
   void volverAValidar() {
-    if (_imagenPath != null && state.ocrResult != null && _puntos.isNotEmpty) {
+    if (_imagenPath != null &&
+        _recepcionActual != null &&
+        _puntosDestino.isNotEmpty) {
       state = RecepcionState.validandoDatos(
-        ocrResult: state.ocrResult!,
+        recepcion: _recepcionActual!,
         imagenPath: _imagenPath!,
-        puntos: _puntos,
+        puntosDestino: _puntosDestino,
       );
     } else {
-      state = const RecepcionState.initial();
+      reiniciar();
+    }
+  }
+
+  /// Intenta cargar puntos de nuevo
+  void reintentar() {
+    if (_recepcionActual != null && _imagenPath != null) {
+      _cargarPuntosDestino();
+    } else {
+      reiniciar();
     }
   }
 }

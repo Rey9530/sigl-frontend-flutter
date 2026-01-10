@@ -6,7 +6,6 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/custom_button.dart';
 import '../providers/recepcion_provider.dart';
-import '../providers/recepcion_state.dart';
 
 class ConfirmacionScreen extends ConsumerWidget {
   const ConfirmacionScreen({super.key});
@@ -29,10 +28,10 @@ class ConfirmacionScreen extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: AppColors.success.withOpacity(0.1),
+                  color: AppColors.success.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.check_circle,
                   size: 80,
                   color: AppColors.success,
@@ -43,8 +42,8 @@ class ConfirmacionScreen extends ConsumerWidget {
               Text(
                 'Paquete registrado exitosamente',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  fontWeight: FontWeight.bold,
+                ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 32),
@@ -59,18 +58,18 @@ class ConfirmacionScreen extends ConsumerWidget {
                       Text(
                         'Codigo de Rastreo',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.grey[600],
-                            ),
+                          color: Colors.grey[600],
+                        ),
                       ),
                       const SizedBox(height: 8),
                       SelectableText(
                         paquete.codigoRastreo,
-                        style:
-                            Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 2,
-                                  color: AppColors.primary,
-                                ),
+                        style: Theme.of(context).textTheme.headlineMedium
+                            ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 2,
+                              color: AppColors.primary,
+                            ),
                       ),
                       const SizedBox(height: 12),
                       OutlinedButton.icon(
@@ -104,8 +103,8 @@ class ConfirmacionScreen extends ConsumerWidget {
                       Text(
                         'Escanear para rastrear',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.grey[600],
-                            ),
+                          color: Colors.grey[600],
+                        ),
                       ),
                       const SizedBox(height: 16),
                       Container(
@@ -138,10 +137,8 @@ class ConfirmacionScreen extends ConsumerWidget {
                     children: [
                       Text(
                         'Resumen',
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const Divider(),
                       _InfoRow(
@@ -266,15 +263,9 @@ class _InfoRow extends StatelessWidget {
         children: [
           Icon(icon, size: 18, color: Colors.grey[600]),
           const SizedBox(width: 8),
-          Text(
-            label,
-            style: TextStyle(color: Colors.grey[600], fontSize: 13),
-          ),
+          Text(label, style: TextStyle(color: Colors.grey[600], fontSize: 13)),
           const Spacer(),
-          Text(
-            value,
-            style: const TextStyle(fontWeight: FontWeight.w500),
-          ),
+          Text(value, style: const TextStyle(fontWeight: FontWeight.w500)),
         ],
       ),
     );

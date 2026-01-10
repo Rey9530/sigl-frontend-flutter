@@ -21,7 +21,7 @@ Paquete _$PaqueteFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Paquete {
-  @JsonKey(name: 'id_paquete')
+  @JsonKey(name: 'id_paquete', fromJson: _stringToInt)
   int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'codigo_rastreo')
   String get codigoRastreo => throw _privateConstructorUsedError;
@@ -35,13 +35,13 @@ mixin _$Paquete {
   String get destinatarioNombre => throw _privateConstructorUsedError;
   @JsonKey(name: 'destinatario_telefono')
   String get destinatarioTelefono => throw _privateConstructorUsedError;
-  @JsonKey(name: 'punto_origen_id')
+  @JsonKey(name: 'punto_origen_id', fromJson: _stringToInt)
   int get puntoOrigenId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'punto_destino_id')
+  @JsonKey(name: 'punto_destino_id', fromJson: _stringToInt)
   int get puntoDestinoId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'costo_envio')
+  @JsonKey(name: 'costo_envio', fromJson: _stringToDouble)
   double get costoEnvio => throw _privateConstructorUsedError;
-  @JsonKey(name: 'valor_paquete')
+  @JsonKey(name: 'valor_paquete', fromJson: _stringToDoubleNullable)
   double? get valorPaquete => throw _privateConstructorUsedError;
   @JsonKey(name: 'estado_actual')
   String? get estadoActual => throw _privateConstructorUsedError;
@@ -71,17 +71,19 @@ abstract class $PaqueteCopyWith<$Res> {
       _$PaqueteCopyWithImpl<$Res, Paquete>;
   @useResult
   $Res call({
-    @JsonKey(name: 'id_paquete') int? id,
+    @JsonKey(name: 'id_paquete', fromJson: _stringToInt) int? id,
     @JsonKey(name: 'codigo_rastreo') String codigoRastreo,
     @JsonKey(name: 'remitente_nombre') String remitenteNombre,
     @JsonKey(name: 'remitente_telefono') String remitenteTelefono,
     @JsonKey(name: 'remitente_dui') String? remitenteDui,
     @JsonKey(name: 'destinatario_nombre') String destinatarioNombre,
     @JsonKey(name: 'destinatario_telefono') String destinatarioTelefono,
-    @JsonKey(name: 'punto_origen_id') int puntoOrigenId,
-    @JsonKey(name: 'punto_destino_id') int puntoDestinoId,
-    @JsonKey(name: 'costo_envio') double costoEnvio,
-    @JsonKey(name: 'valor_paquete') double? valorPaquete,
+    @JsonKey(name: 'punto_origen_id', fromJson: _stringToInt) int puntoOrigenId,
+    @JsonKey(name: 'punto_destino_id', fromJson: _stringToInt)
+    int puntoDestinoId,
+    @JsonKey(name: 'costo_envio', fromJson: _stringToDouble) double costoEnvio,
+    @JsonKey(name: 'valor_paquete', fromJson: _stringToDoubleNullable)
+    double? valorPaquete,
     @JsonKey(name: 'estado_actual') String? estadoActual,
     @JsonKey(name: 'imagen_vineta_url') String? imagenVinetaUrl,
     String? descripcion,
@@ -246,17 +248,19 @@ abstract class _$$PaqueteImplCopyWith<$Res> implements $PaqueteCopyWith<$Res> {
   @override
   @useResult
   $Res call({
-    @JsonKey(name: 'id_paquete') int? id,
+    @JsonKey(name: 'id_paquete', fromJson: _stringToInt) int? id,
     @JsonKey(name: 'codigo_rastreo') String codigoRastreo,
     @JsonKey(name: 'remitente_nombre') String remitenteNombre,
     @JsonKey(name: 'remitente_telefono') String remitenteTelefono,
     @JsonKey(name: 'remitente_dui') String? remitenteDui,
     @JsonKey(name: 'destinatario_nombre') String destinatarioNombre,
     @JsonKey(name: 'destinatario_telefono') String destinatarioTelefono,
-    @JsonKey(name: 'punto_origen_id') int puntoOrigenId,
-    @JsonKey(name: 'punto_destino_id') int puntoDestinoId,
-    @JsonKey(name: 'costo_envio') double costoEnvio,
-    @JsonKey(name: 'valor_paquete') double? valorPaquete,
+    @JsonKey(name: 'punto_origen_id', fromJson: _stringToInt) int puntoOrigenId,
+    @JsonKey(name: 'punto_destino_id', fromJson: _stringToInt)
+    int puntoDestinoId,
+    @JsonKey(name: 'costo_envio', fromJson: _stringToDouble) double costoEnvio,
+    @JsonKey(name: 'valor_paquete', fromJson: _stringToDoubleNullable)
+    double? valorPaquete,
     @JsonKey(name: 'estado_actual') String? estadoActual,
     @JsonKey(name: 'imagen_vineta_url') String? imagenVinetaUrl,
     String? descripcion,
@@ -388,17 +392,21 @@ class __$$PaqueteImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaqueteImpl implements _Paquete {
   const _$PaqueteImpl({
-    @JsonKey(name: 'id_paquete') this.id,
+    @JsonKey(name: 'id_paquete', fromJson: _stringToInt) this.id,
     @JsonKey(name: 'codigo_rastreo') required this.codigoRastreo,
     @JsonKey(name: 'remitente_nombre') required this.remitenteNombre,
     @JsonKey(name: 'remitente_telefono') required this.remitenteTelefono,
     @JsonKey(name: 'remitente_dui') this.remitenteDui,
     @JsonKey(name: 'destinatario_nombre') required this.destinatarioNombre,
     @JsonKey(name: 'destinatario_telefono') required this.destinatarioTelefono,
-    @JsonKey(name: 'punto_origen_id') required this.puntoOrigenId,
-    @JsonKey(name: 'punto_destino_id') required this.puntoDestinoId,
-    @JsonKey(name: 'costo_envio') required this.costoEnvio,
-    @JsonKey(name: 'valor_paquete') this.valorPaquete,
+    @JsonKey(name: 'punto_origen_id', fromJson: _stringToInt)
+    required this.puntoOrigenId,
+    @JsonKey(name: 'punto_destino_id', fromJson: _stringToInt)
+    required this.puntoDestinoId,
+    @JsonKey(name: 'costo_envio', fromJson: _stringToDouble)
+    required this.costoEnvio,
+    @JsonKey(name: 'valor_paquete', fromJson: _stringToDoubleNullable)
+    this.valorPaquete,
     @JsonKey(name: 'estado_actual') this.estadoActual,
     @JsonKey(name: 'imagen_vineta_url') this.imagenVinetaUrl,
     this.descripcion,
@@ -412,7 +420,7 @@ class _$PaqueteImpl implements _Paquete {
       _$$PaqueteImplFromJson(json);
 
   @override
-  @JsonKey(name: 'id_paquete')
+  @JsonKey(name: 'id_paquete', fromJson: _stringToInt)
   final int? id;
   @override
   @JsonKey(name: 'codigo_rastreo')
@@ -433,16 +441,16 @@ class _$PaqueteImpl implements _Paquete {
   @JsonKey(name: 'destinatario_telefono')
   final String destinatarioTelefono;
   @override
-  @JsonKey(name: 'punto_origen_id')
+  @JsonKey(name: 'punto_origen_id', fromJson: _stringToInt)
   final int puntoOrigenId;
   @override
-  @JsonKey(name: 'punto_destino_id')
+  @JsonKey(name: 'punto_destino_id', fromJson: _stringToInt)
   final int puntoDestinoId;
   @override
-  @JsonKey(name: 'costo_envio')
+  @JsonKey(name: 'costo_envio', fromJson: _stringToDouble)
   final double costoEnvio;
   @override
-  @JsonKey(name: 'valor_paquete')
+  @JsonKey(name: 'valor_paquete', fromJson: _stringToDoubleNullable)
   final double? valorPaquete;
   @override
   @JsonKey(name: 'estado_actual')
@@ -550,7 +558,7 @@ class _$PaqueteImpl implements _Paquete {
 
 abstract class _Paquete implements Paquete {
   const factory _Paquete({
-    @JsonKey(name: 'id_paquete') final int? id,
+    @JsonKey(name: 'id_paquete', fromJson: _stringToInt) final int? id,
     @JsonKey(name: 'codigo_rastreo') required final String codigoRastreo,
     @JsonKey(name: 'remitente_nombre') required final String remitenteNombre,
     @JsonKey(name: 'remitente_telefono')
@@ -560,10 +568,14 @@ abstract class _Paquete implements Paquete {
     required final String destinatarioNombre,
     @JsonKey(name: 'destinatario_telefono')
     required final String destinatarioTelefono,
-    @JsonKey(name: 'punto_origen_id') required final int puntoOrigenId,
-    @JsonKey(name: 'punto_destino_id') required final int puntoDestinoId,
-    @JsonKey(name: 'costo_envio') required final double costoEnvio,
-    @JsonKey(name: 'valor_paquete') final double? valorPaquete,
+    @JsonKey(name: 'punto_origen_id', fromJson: _stringToInt)
+    required final int puntoOrigenId,
+    @JsonKey(name: 'punto_destino_id', fromJson: _stringToInt)
+    required final int puntoDestinoId,
+    @JsonKey(name: 'costo_envio', fromJson: _stringToDouble)
+    required final double costoEnvio,
+    @JsonKey(name: 'valor_paquete', fromJson: _stringToDoubleNullable)
+    final double? valorPaquete,
     @JsonKey(name: 'estado_actual') final String? estadoActual,
     @JsonKey(name: 'imagen_vineta_url') final String? imagenVinetaUrl,
     final String? descripcion,
@@ -576,7 +588,7 @@ abstract class _Paquete implements Paquete {
   factory _Paquete.fromJson(Map<String, dynamic> json) = _$PaqueteImpl.fromJson;
 
   @override
-  @JsonKey(name: 'id_paquete')
+  @JsonKey(name: 'id_paquete', fromJson: _stringToInt)
   int? get id;
   @override
   @JsonKey(name: 'codigo_rastreo')
@@ -597,16 +609,16 @@ abstract class _Paquete implements Paquete {
   @JsonKey(name: 'destinatario_telefono')
   String get destinatarioTelefono;
   @override
-  @JsonKey(name: 'punto_origen_id')
+  @JsonKey(name: 'punto_origen_id', fromJson: _stringToInt)
   int get puntoOrigenId;
   @override
-  @JsonKey(name: 'punto_destino_id')
+  @JsonKey(name: 'punto_destino_id', fromJson: _stringToInt)
   int get puntoDestinoId;
   @override
-  @JsonKey(name: 'costo_envio')
+  @JsonKey(name: 'costo_envio', fromJson: _stringToDouble)
   double get costoEnvio;
   @override
-  @JsonKey(name: 'valor_paquete')
+  @JsonKey(name: 'valor_paquete', fromJson: _stringToDoubleNullable)
   double? get valorPaquete;
   @override
   @JsonKey(name: 'estado_actual')
@@ -642,7 +654,7 @@ PuntoResumen _$PuntoResumenFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PuntoResumen {
-  @JsonKey(name: 'id_punto')
+  @JsonKey(name: 'id_punto', fromJson: _stringToInt)
   int get id => throw _privateConstructorUsedError;
   String get nombre => throw _privateConstructorUsedError;
   String get codigo => throw _privateConstructorUsedError;
@@ -666,7 +678,7 @@ abstract class $PuntoResumenCopyWith<$Res> {
   ) = _$PuntoResumenCopyWithImpl<$Res, PuntoResumen>;
   @useResult
   $Res call({
-    @JsonKey(name: 'id_punto') int id,
+    @JsonKey(name: 'id_punto', fromJson: _stringToInt) int id,
     String nombre,
     String codigo,
     String? ciudad,
@@ -727,7 +739,7 @@ abstract class _$$PuntoResumenImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    @JsonKey(name: 'id_punto') int id,
+    @JsonKey(name: 'id_punto', fromJson: _stringToInt) int id,
     String nombre,
     String codigo,
     String? ciudad,
@@ -780,7 +792,7 @@ class __$$PuntoResumenImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PuntoResumenImpl implements _PuntoResumen {
   const _$PuntoResumenImpl({
-    @JsonKey(name: 'id_punto') required this.id,
+    @JsonKey(name: 'id_punto', fromJson: _stringToInt) required this.id,
     required this.nombre,
     required this.codigo,
     this.ciudad,
@@ -790,7 +802,7 @@ class _$PuntoResumenImpl implements _PuntoResumen {
       _$$PuntoResumenImplFromJson(json);
 
   @override
-  @JsonKey(name: 'id_punto')
+  @JsonKey(name: 'id_punto', fromJson: _stringToInt)
   final int id;
   @override
   final String nombre;
@@ -835,7 +847,7 @@ class _$PuntoResumenImpl implements _PuntoResumen {
 
 abstract class _PuntoResumen implements PuntoResumen {
   const factory _PuntoResumen({
-    @JsonKey(name: 'id_punto') required final int id,
+    @JsonKey(name: 'id_punto', fromJson: _stringToInt) required final int id,
     required final String nombre,
     required final String codigo,
     final String? ciudad,
@@ -845,7 +857,7 @@ abstract class _PuntoResumen implements PuntoResumen {
       _$PuntoResumenImpl.fromJson;
 
   @override
-  @JsonKey(name: 'id_punto')
+  @JsonKey(name: 'id_punto', fromJson: _stringToInt)
   int get id;
   @override
   String get nombre;

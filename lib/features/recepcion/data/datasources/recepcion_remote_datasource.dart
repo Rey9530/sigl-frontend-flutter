@@ -4,13 +4,36 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../../../../core/network/api_client.dart';
 import '../../domain/entities/paquete.dart';
-import '../../domain/entities/ocr_result.dart';
+import '../../domain/entities/recepcion_paquete.dart';
 import '../../domain/entities/punto.dart';
 
 abstract class RecepcionRemoteDataSource {
-  Future<OcrResult> procesarOcr(File imagen);
-  Future<String> subirVineta(File imagen);
-  Future<Paquete> crearPaquete(Map<String, dynamic> data);
+  /// Crea una nueva recepcion enviando imagen + punto_servicio_id
+  Future<RecepcionPaquete> crearRecepcion(
+    File imagen,
+    int puntoServicioId, {
+    String? notas,
+  });
+
+  /// Actualiza campos de una recepcion existente
+  Future<RecepcionPaquete> actualizarRecepcion(
+    int id,
+    Map<String, dynamic> data,
+  );
+
+  /// Valida manualmente una recepcion (marca como VALIDADO)
+  Future<RecepcionPaquete> validarRecepcion(int id);
+
+  /// Convierte una recepcion en un paquete
+  Future<Paquete> convertirAPaquete(int id, Map<String, dynamic> data);
+
+  /// Descarta una recepcion
+  Future<RecepcionPaquete> descartarRecepcion(int id, String motivo);
+
+  /// Obtiene una recepcion por ID
+  Future<RecepcionPaquete> obtenerRecepcion(int id);
+
+  /// Obtiene puntos de servicio activos
   Future<List<Punto>> obtenerPuntosActivos();
 }
 
@@ -20,49 +43,76 @@ class RecepcionRemoteDataSourceImpl implements RecepcionRemoteDataSource {
   RecepcionRemoteDataSourceImpl(this._dio);
 
   @override
-  Future<OcrResult> procesarOcr(File imagen) async {
-    final formData = FormData.fromMap({
-      'imagen': await MultipartFile.fromFile(
-        imagen.path,
-        filename: 'vineta.jpg',
-      ),
-    });
-
-    final response = await _dio.post(
-      ApiConstants.paquetesOcr,
-      data: formData,
-      options: Options(contentType: 'multipart/form-data'),
-    );
-
-    return OcrResult.fromJson(response.data);
-  }
-
-  @override
-  Future<String> subirVineta(File imagen) async {
+  Future<RecepcionPaquete> crearRecepcion(
+    File imagen,
+    int puntoServicioId, {
+    String? notas,
+  }) async {
     final formData = FormData.fromMap({
       'imagen': await MultipartFile.fromFile(
         imagen.path,
         filename: 'vineta_${DateTime.now().millisecondsSinceEpoch}.jpg',
       ),
+      'punto_servicio_id': puntoServicioId.toString(),
+      if (notas != null && notas.isNotEmpty) 'notas': notas,
     });
 
     final response = await _dio.post(
-      ApiConstants.paquetesUpload,
+      ApiConstants.recepciones,
       data: formData,
       options: Options(contentType: 'multipart/form-data'),
     );
 
-    return response.data['url'] as String;
+    return RecepcionPaquete.fromJson(response.data);
   }
 
   @override
-  Future<Paquete> crearPaquete(Map<String, dynamic> data) async {
+  Future<RecepcionPaquete> actualizarRecepcion(
+    int id,
+    Map<String, dynamic> data,
+  ) async {
+    final response = await _dio.put(
+      '${ApiConstants.recepciones}/$id',
+      data: data,
+    );
+
+    return RecepcionPaquete.fromJson(response.data);
+  }
+
+  @override
+  Future<RecepcionPaquete> validarRecepcion(int id) async {
+    final response = await _dio.patch(
+      '${ApiConstants.recepciones}/$id/validar',
+    );
+
+    return RecepcionPaquete.fromJson(response.data);
+  }
+
+  @override
+  Future<Paquete> convertirAPaquete(int id, Map<String, dynamic> data) async {
     final response = await _dio.post(
-      ApiConstants.paquetes,
+      '${ApiConstants.recepciones}/$id/convertir',
       data: data,
     );
 
     return Paquete.fromJson(response.data);
+  }
+
+  @override
+  Future<RecepcionPaquete> descartarRecepcion(int id, String motivo) async {
+    final response = await _dio.delete(
+      '${ApiConstants.recepciones}/$id',
+      data: {'motivo': motivo},
+    );
+
+    return RecepcionPaquete.fromJson(response.data);
+  }
+
+  @override
+  Future<RecepcionPaquete> obtenerRecepcion(int id) async {
+    final response = await _dio.get('${ApiConstants.recepciones}/$id');
+
+    return RecepcionPaquete.fromJson(response.data);
   }
 
   @override

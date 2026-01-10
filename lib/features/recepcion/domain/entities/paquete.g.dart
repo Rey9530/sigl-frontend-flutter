@@ -8,17 +8,17 @@ part of 'paquete.dart';
 
 _$PaqueteImpl _$$PaqueteImplFromJson(Map<String, dynamic> json) =>
     _$PaqueteImpl(
-      id: (json['id_paquete'] as num?)?.toInt(),
+      id: _stringToInt(json['id_paquete']),
       codigoRastreo: json['codigo_rastreo'] as String,
       remitenteNombre: json['remitente_nombre'] as String,
       remitenteTelefono: json['remitente_telefono'] as String,
       remitenteDui: json['remitente_dui'] as String?,
       destinatarioNombre: json['destinatario_nombre'] as String,
       destinatarioTelefono: json['destinatario_telefono'] as String,
-      puntoOrigenId: (json['punto_origen_id'] as num).toInt(),
-      puntoDestinoId: (json['punto_destino_id'] as num).toInt(),
-      costoEnvio: (json['costo_envio'] as num).toDouble(),
-      valorPaquete: (json['valor_paquete'] as num?)?.toDouble(),
+      puntoOrigenId: _stringToInt(json['punto_origen_id']),
+      puntoDestinoId: _stringToInt(json['punto_destino_id']),
+      costoEnvio: _stringToDouble(json['costo_envio']),
+      valorPaquete: _stringToDoubleNullable(json['valor_paquete']),
       estadoActual: json['estado_actual'] as String?,
       imagenVinetaUrl: json['imagen_vineta_url'] as String?,
       descripcion: json['descripcion'] as String?,
@@ -60,7 +60,7 @@ Map<String, dynamic> _$$PaqueteImplToJson(_$PaqueteImpl instance) =>
 
 _$PuntoResumenImpl _$$PuntoResumenImplFromJson(Map<String, dynamic> json) =>
     _$PuntoResumenImpl(
-      id: (json['id_punto'] as num).toInt(),
+      id: _stringToInt(json['id_punto']),
       nombre: json['nombre'] as String,
       codigo: json['codigo'] as String,
       ciudad: json['ciudad'] as String?,

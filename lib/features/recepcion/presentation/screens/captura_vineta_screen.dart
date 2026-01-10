@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../shared/widgets/custom_button.dart';
 import '../../../../shared/widgets/loading_indicator.dart';
+import '../../../auth/presentation/providers/auth_provider.dart';
 import '../providers/recepcion_provider.dart';
 import '../providers/recepcion_state.dart';
 
@@ -75,8 +76,24 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
     super.dispose();
   }
 
+  int? _getPuntoId() {
+    final authState = ref.read(authStateProvider);
+    return authState.user?.puntoId;
+  }
+
   Future<void> _capturarFoto() async {
     if (_cameraController == null || _isCapturing) return;
+
+    final puntoId = _getPuntoId();
+    if (puntoId == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No tienes un punto de servicio asignado'),
+          backgroundColor: AppColors.error,
+        ),
+      );
+      return;
+    }
 
     setState(() => _isCapturing = true);
 
@@ -84,7 +101,7 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
       final image = await _cameraController!.takePicture();
       await ref
           .read(recepcionProvider.notifier)
-          .procesarImagenOcr(File(image.path));
+          .crearRecepcion(File(image.path), puntoId);
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -102,6 +119,17 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
   }
 
   Future<void> _seleccionarDeGaleria() async {
+    final puntoId = _getPuntoId();
+    if (puntoId == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No tienes un punto de servicio asignado'),
+          backgroundColor: AppColors.error,
+        ),
+      );
+      return;
+    }
+
     final picker = ImagePicker();
     final image = await picker.pickImage(
       source: ImageSource.gallery,
@@ -113,7 +141,7 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
     if (image != null) {
       await ref
           .read(recepcionProvider.notifier)
-          .procesarImagenOcr(File(image.path));
+          .crearRecepcion(File(image.path), puntoId);
     }
   }
 
@@ -124,15 +152,12 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
     // Escuchar cambios de estado para navegar
     ref.listen<RecepcionState>(recepcionProvider, (previous, next) {
       next.maybeWhen(
-        validandoDatos: (_, __, ___) {
+        validandoDatos: (_, _, _) {
           context.push('/recepcion/validar');
         },
-        error: (mensaje, _) {
+        error: (mensaje, _, _, _) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(mensaje),
-              backgroundColor: AppColors.error,
-            ),
+            SnackBar(content: Text(mensaje), backgroundColor: AppColors.error),
           );
         },
         orElse: () {},
@@ -151,12 +176,10 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
         ],
       ),
       body: state.maybeWhen(
-        procesandoOcr: () => const LoadingScreen(
-          message: 'Procesando imagen con OCR...',
-        ),
-        cargandoPuntos: () => const LoadingScreen(
-          message: 'Cargando puntos de servicio...',
-        ),
+        procesandoRecepcion: () =>
+            const LoadingScreen(message: 'Procesando imagen con OCR...'),
+        cargandoPuntos: (_, _) =>
+            const LoadingScreen(message: 'Cargando puntos de destino...'),
         orElse: () => _buildCameraView(),
       ),
     );
@@ -170,11 +193,7 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.error_outline,
-                size: 64,
-                color: AppColors.error,
-              ),
+              const Icon(Icons.error_outline, size: 64, color: AppColors.error),
               const SizedBox(height: 16),
               Text(
                 _errorMessage!,
@@ -206,9 +225,7 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
     return Stack(
       children: [
         // Vista de camara
-        Positioned.fill(
-          child: CameraPreview(_cameraController!),
-        ),
+        Positioned.fill(child: CameraPreview(_cameraController!)),
 
         // Guia de encuadre
         Center(
@@ -225,19 +242,19 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
                 Icon(
                   Icons.document_scanner,
                   size: 48,
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.white.withValues(alpha: 0.7),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Coloca la vineta dentro del recuadro',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.9),
+                    color: Colors.white.withValues(alpha: 0.9),
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     shadows: [
                       Shadow(
                         blurRadius: 4,
-                        color: Colors.black.withOpacity(0.5),
+                        color: Colors.black.withValues(alpha: 0.5),
                       ),
                     ],
                   ),

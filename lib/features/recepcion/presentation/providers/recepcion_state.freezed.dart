@@ -21,64 +21,109 @@ mixin _$RecepcionState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) => throw _privateConstructorUsedError;
@@ -86,11 +131,12 @@ mixin _$RecepcionState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) => throw _privateConstructorUsedError;
@@ -98,11 +144,12 @@ mixin _$RecepcionState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -176,19 +223,33 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
     return initial();
   }
@@ -198,18 +259,33 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
     return initial?.call();
   }
@@ -219,18 +295,33 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -244,11 +335,12 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
@@ -260,11 +352,12 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
@@ -276,11 +369,12 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -341,19 +435,33 @@ class _$CapturandoImagenImpl implements _CapturandoImagen {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
     return capturandoImagen();
   }
@@ -363,18 +471,33 @@ class _$CapturandoImagenImpl implements _CapturandoImagen {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
     return capturandoImagen?.call();
   }
@@ -384,18 +507,33 @@ class _$CapturandoImagenImpl implements _CapturandoImagen {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
     if (capturandoImagen != null) {
@@ -409,11 +547,12 @@ class _$CapturandoImagenImpl implements _CapturandoImagen {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
@@ -425,11 +564,12 @@ class _$CapturandoImagenImpl implements _CapturandoImagen {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
@@ -441,11 +581,12 @@ class _$CapturandoImagenImpl implements _CapturandoImagen {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -462,20 +603,20 @@ abstract class _CapturandoImagen implements RecepcionState {
 }
 
 /// @nodoc
-abstract class _$$ProcesandoOcrImplCopyWith<$Res> {
-  factory _$$ProcesandoOcrImplCopyWith(
-    _$ProcesandoOcrImpl value,
-    $Res Function(_$ProcesandoOcrImpl) then,
-  ) = __$$ProcesandoOcrImplCopyWithImpl<$Res>;
+abstract class _$$ProcesandoRecepcionImplCopyWith<$Res> {
+  factory _$$ProcesandoRecepcionImplCopyWith(
+    _$ProcesandoRecepcionImpl value,
+    $Res Function(_$ProcesandoRecepcionImpl) then,
+  ) = __$$ProcesandoRecepcionImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ProcesandoOcrImplCopyWithImpl<$Res>
-    extends _$RecepcionStateCopyWithImpl<$Res, _$ProcesandoOcrImpl>
-    implements _$$ProcesandoOcrImplCopyWith<$Res> {
-  __$$ProcesandoOcrImplCopyWithImpl(
-    _$ProcesandoOcrImpl _value,
-    $Res Function(_$ProcesandoOcrImpl) _then,
+class __$$ProcesandoRecepcionImplCopyWithImpl<$Res>
+    extends _$RecepcionStateCopyWithImpl<$Res, _$ProcesandoRecepcionImpl>
+    implements _$$ProcesandoRecepcionImplCopyWith<$Res> {
+  __$$ProcesandoRecepcionImplCopyWithImpl(
+    _$ProcesandoRecepcionImpl _value,
+    $Res Function(_$ProcesandoRecepcionImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of RecepcionState
@@ -484,18 +625,19 @@ class __$$ProcesandoOcrImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcesandoOcrImpl implements _ProcesandoOcr {
-  const _$ProcesandoOcrImpl();
+class _$ProcesandoRecepcionImpl implements _ProcesandoRecepcion {
+  const _$ProcesandoRecepcionImpl();
 
   @override
   String toString() {
-    return 'RecepcionState.procesandoOcr()';
+    return 'RecepcionState.procesandoRecepcion()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ProcesandoOcrImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ProcesandoRecepcionImpl);
   }
 
   @override
@@ -506,21 +648,35 @@ class _$ProcesandoOcrImpl implements _ProcesandoOcr {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
-    return procesandoOcr();
+    return procesandoRecepcion();
   }
 
   @override
@@ -528,20 +684,35 @@ class _$ProcesandoOcrImpl implements _ProcesandoOcr {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
-    return procesandoOcr?.call();
+    return procesandoRecepcion?.call();
   }
 
   @override
@@ -549,22 +720,37 @@ class _$ProcesandoOcrImpl implements _ProcesandoOcr {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
-    if (procesandoOcr != null) {
-      return procesandoOcr();
+    if (procesandoRecepcion != null) {
+      return procesandoRecepcion();
     }
     return orElse();
   }
@@ -574,15 +760,16 @@ class _$ProcesandoOcrImpl implements _ProcesandoOcr {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
-    return procesandoOcr(this);
+    return procesandoRecepcion(this);
   }
 
   @override
@@ -590,15 +777,16 @@ class _$ProcesandoOcrImpl implements _ProcesandoOcr {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
-    return procesandoOcr?.call(this);
+    return procesandoRecepcion?.call(this);
   }
 
   @override
@@ -606,58 +794,59 @@ class _$ProcesandoOcrImpl implements _ProcesandoOcr {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (procesandoOcr != null) {
-      return procesandoOcr(this);
+    if (procesandoRecepcion != null) {
+      return procesandoRecepcion(this);
     }
     return orElse();
   }
 }
 
-abstract class _ProcesandoOcr implements RecepcionState {
-  const factory _ProcesandoOcr() = _$ProcesandoOcrImpl;
+abstract class _ProcesandoRecepcion implements RecepcionState {
+  const factory _ProcesandoRecepcion() = _$ProcesandoRecepcionImpl;
 }
 
 /// @nodoc
-abstract class _$$OcrCompletadoImplCopyWith<$Res> {
-  factory _$$OcrCompletadoImplCopyWith(
-    _$OcrCompletadoImpl value,
-    $Res Function(_$OcrCompletadoImpl) then,
-  ) = __$$OcrCompletadoImplCopyWithImpl<$Res>;
+abstract class _$$RecepcionCreadaImplCopyWith<$Res> {
+  factory _$$RecepcionCreadaImplCopyWith(
+    _$RecepcionCreadaImpl value,
+    $Res Function(_$RecepcionCreadaImpl) then,
+  ) = __$$RecepcionCreadaImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({OcrResult resultado, String imagenPath});
+  $Res call({RecepcionPaquete recepcion, String imagenPath});
 
-  $OcrResultCopyWith<$Res> get resultado;
+  $RecepcionPaqueteCopyWith<$Res> get recepcion;
 }
 
 /// @nodoc
-class __$$OcrCompletadoImplCopyWithImpl<$Res>
-    extends _$RecepcionStateCopyWithImpl<$Res, _$OcrCompletadoImpl>
-    implements _$$OcrCompletadoImplCopyWith<$Res> {
-  __$$OcrCompletadoImplCopyWithImpl(
-    _$OcrCompletadoImpl _value,
-    $Res Function(_$OcrCompletadoImpl) _then,
+class __$$RecepcionCreadaImplCopyWithImpl<$Res>
+    extends _$RecepcionStateCopyWithImpl<$Res, _$RecepcionCreadaImpl>
+    implements _$$RecepcionCreadaImplCopyWith<$Res> {
+  __$$RecepcionCreadaImplCopyWithImpl(
+    _$RecepcionCreadaImpl _value,
+    $Res Function(_$RecepcionCreadaImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of RecepcionState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? resultado = null, Object? imagenPath = null}) {
+  $Res call({Object? recepcion = null, Object? imagenPath = null}) {
     return _then(
-      _$OcrCompletadoImpl(
-        resultado: null == resultado
-            ? _value.resultado
-            : resultado // ignore: cast_nullable_to_non_nullable
-                  as OcrResult,
+      _$RecepcionCreadaImpl(
+        recepcion: null == recepcion
+            ? _value.recepcion
+            : recepcion // ignore: cast_nullable_to_non_nullable
+                  as RecepcionPaquete,
         imagenPath: null == imagenPath
             ? _value.imagenPath
             : imagenPath // ignore: cast_nullable_to_non_nullable
@@ -670,73 +859,90 @@ class __$$OcrCompletadoImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $OcrResultCopyWith<$Res> get resultado {
-    return $OcrResultCopyWith<$Res>(_value.resultado, (value) {
-      return _then(_value.copyWith(resultado: value));
+  $RecepcionPaqueteCopyWith<$Res> get recepcion {
+    return $RecepcionPaqueteCopyWith<$Res>(_value.recepcion, (value) {
+      return _then(_value.copyWith(recepcion: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$OcrCompletadoImpl implements _OcrCompletado {
-  const _$OcrCompletadoImpl({
-    required this.resultado,
+class _$RecepcionCreadaImpl implements _RecepcionCreada {
+  const _$RecepcionCreadaImpl({
+    required this.recepcion,
     required this.imagenPath,
   });
 
   @override
-  final OcrResult resultado;
+  final RecepcionPaquete recepcion;
   @override
   final String imagenPath;
 
   @override
   String toString() {
-    return 'RecepcionState.ocrCompletado(resultado: $resultado, imagenPath: $imagenPath)';
+    return 'RecepcionState.recepcionCreada(recepcion: $recepcion, imagenPath: $imagenPath)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OcrCompletadoImpl &&
-            (identical(other.resultado, resultado) ||
-                other.resultado == resultado) &&
+            other is _$RecepcionCreadaImpl &&
+            (identical(other.recepcion, recepcion) ||
+                other.recepcion == recepcion) &&
             (identical(other.imagenPath, imagenPath) ||
                 other.imagenPath == imagenPath));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, resultado, imagenPath);
+  int get hashCode => Object.hash(runtimeType, recepcion, imagenPath);
 
   /// Create a copy of RecepcionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$OcrCompletadoImplCopyWith<_$OcrCompletadoImpl> get copyWith =>
-      __$$OcrCompletadoImplCopyWithImpl<_$OcrCompletadoImpl>(this, _$identity);
+  _$$RecepcionCreadaImplCopyWith<_$RecepcionCreadaImpl> get copyWith =>
+      __$$RecepcionCreadaImplCopyWithImpl<_$RecepcionCreadaImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
-    return ocrCompletado(resultado, imagenPath);
+    return recepcionCreada(recepcion, imagenPath);
   }
 
   @override
@@ -744,20 +950,35 @@ class _$OcrCompletadoImpl implements _OcrCompletado {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
-    return ocrCompletado?.call(resultado, imagenPath);
+    return recepcionCreada?.call(recepcion, imagenPath);
   }
 
   @override
@@ -765,22 +986,37 @@ class _$OcrCompletadoImpl implements _OcrCompletado {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
-    if (ocrCompletado != null) {
-      return ocrCompletado(resultado, imagenPath);
+    if (recepcionCreada != null) {
+      return recepcionCreada(recepcion, imagenPath);
     }
     return orElse();
   }
@@ -790,15 +1026,16 @@ class _$OcrCompletadoImpl implements _OcrCompletado {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
-    return ocrCompletado(this);
+    return recepcionCreada(this);
   }
 
   @override
@@ -806,15 +1043,16 @@ class _$OcrCompletadoImpl implements _OcrCompletado {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
-    return ocrCompletado?.call(this);
+    return recepcionCreada?.call(this);
   }
 
   @override
@@ -822,35 +1060,36 @@ class _$OcrCompletadoImpl implements _OcrCompletado {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (ocrCompletado != null) {
-      return ocrCompletado(this);
+    if (recepcionCreada != null) {
+      return recepcionCreada(this);
     }
     return orElse();
   }
 }
 
-abstract class _OcrCompletado implements RecepcionState {
-  const factory _OcrCompletado({
-    required final OcrResult resultado,
+abstract class _RecepcionCreada implements RecepcionState {
+  const factory _RecepcionCreada({
+    required final RecepcionPaquete recepcion,
     required final String imagenPath,
-  }) = _$OcrCompletadoImpl;
+  }) = _$RecepcionCreadaImpl;
 
-  OcrResult get resultado;
+  RecepcionPaquete get recepcion;
   String get imagenPath;
 
   /// Create a copy of RecepcionState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OcrCompletadoImplCopyWith<_$OcrCompletadoImpl> get copyWith =>
+  _$$RecepcionCreadaImplCopyWith<_$RecepcionCreadaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -860,6 +1099,10 @@ abstract class _$$CargandoPuntosImplCopyWith<$Res> {
     _$CargandoPuntosImpl value,
     $Res Function(_$CargandoPuntosImpl) then,
   ) = __$$CargandoPuntosImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RecepcionPaquete recepcion, String imagenPath});
+
+  $RecepcionPaqueteCopyWith<$Res> get recepcion;
 }
 
 /// @nodoc
@@ -873,47 +1116,111 @@ class __$$CargandoPuntosImplCopyWithImpl<$Res>
 
   /// Create a copy of RecepcionState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? recepcion = null, Object? imagenPath = null}) {
+    return _then(
+      _$CargandoPuntosImpl(
+        recepcion: null == recepcion
+            ? _value.recepcion
+            : recepcion // ignore: cast_nullable_to_non_nullable
+                  as RecepcionPaquete,
+        imagenPath: null == imagenPath
+            ? _value.imagenPath
+            : imagenPath // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RecepcionPaqueteCopyWith<$Res> get recepcion {
+    return $RecepcionPaqueteCopyWith<$Res>(_value.recepcion, (value) {
+      return _then(_value.copyWith(recepcion: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$CargandoPuntosImpl implements _CargandoPuntos {
-  const _$CargandoPuntosImpl();
+  const _$CargandoPuntosImpl({
+    required this.recepcion,
+    required this.imagenPath,
+  });
+
+  @override
+  final RecepcionPaquete recepcion;
+  @override
+  final String imagenPath;
 
   @override
   String toString() {
-    return 'RecepcionState.cargandoPuntos()';
+    return 'RecepcionState.cargandoPuntos(recepcion: $recepcion, imagenPath: $imagenPath)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CargandoPuntosImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CargandoPuntosImpl &&
+            (identical(other.recepcion, recepcion) ||
+                other.recepcion == recepcion) &&
+            (identical(other.imagenPath, imagenPath) ||
+                other.imagenPath == imagenPath));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, recepcion, imagenPath);
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CargandoPuntosImplCopyWith<_$CargandoPuntosImpl> get copyWith =>
+      __$$CargandoPuntosImplCopyWithImpl<_$CargandoPuntosImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
-    return cargandoPuntos();
+    return cargandoPuntos(recepcion, imagenPath);
   }
 
   @override
@@ -921,20 +1228,35 @@ class _$CargandoPuntosImpl implements _CargandoPuntos {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
-    return cargandoPuntos?.call();
+    return cargandoPuntos?.call(recepcion, imagenPath);
   }
 
   @override
@@ -942,22 +1264,37 @@ class _$CargandoPuntosImpl implements _CargandoPuntos {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
     if (cargandoPuntos != null) {
-      return cargandoPuntos();
+      return cargandoPuntos(recepcion, imagenPath);
     }
     return orElse();
   }
@@ -967,11 +1304,12 @@ class _$CargandoPuntosImpl implements _CargandoPuntos {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
@@ -983,11 +1321,12 @@ class _$CargandoPuntosImpl implements _CargandoPuntos {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
@@ -999,11 +1338,12 @@ class _$CargandoPuntosImpl implements _CargandoPuntos {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -1016,7 +1356,19 @@ class _$CargandoPuntosImpl implements _CargandoPuntos {
 }
 
 abstract class _CargandoPuntos implements RecepcionState {
-  const factory _CargandoPuntos() = _$CargandoPuntosImpl;
+  const factory _CargandoPuntos({
+    required final RecepcionPaquete recepcion,
+    required final String imagenPath,
+  }) = _$CargandoPuntosImpl;
+
+  RecepcionPaquete get recepcion;
+  String get imagenPath;
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CargandoPuntosImplCopyWith<_$CargandoPuntosImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1026,9 +1378,13 @@ abstract class _$$ValidandoDatosImplCopyWith<$Res> {
     $Res Function(_$ValidandoDatosImpl) then,
   ) = __$$ValidandoDatosImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({OcrResult ocrResult, String imagenPath, List<Punto> puntos});
+  $Res call({
+    RecepcionPaquete recepcion,
+    String imagenPath,
+    List<Punto> puntosDestino,
+  });
 
-  $OcrResultCopyWith<$Res> get ocrResult;
+  $RecepcionPaqueteCopyWith<$Res> get recepcion;
 }
 
 /// @nodoc
@@ -1045,23 +1401,23 @@ class __$$ValidandoDatosImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ocrResult = null,
+    Object? recepcion = null,
     Object? imagenPath = null,
-    Object? puntos = null,
+    Object? puntosDestino = null,
   }) {
     return _then(
       _$ValidandoDatosImpl(
-        ocrResult: null == ocrResult
-            ? _value.ocrResult
-            : ocrResult // ignore: cast_nullable_to_non_nullable
-                  as OcrResult,
+        recepcion: null == recepcion
+            ? _value.recepcion
+            : recepcion // ignore: cast_nullable_to_non_nullable
+                  as RecepcionPaquete,
         imagenPath: null == imagenPath
             ? _value.imagenPath
             : imagenPath // ignore: cast_nullable_to_non_nullable
                   as String,
-        puntos: null == puntos
-            ? _value._puntos
-            : puntos // ignore: cast_nullable_to_non_nullable
+        puntosDestino: null == puntosDestino
+            ? _value._puntosDestino
+            : puntosDestino // ignore: cast_nullable_to_non_nullable
                   as List<Punto>,
       ),
     );
@@ -1071,9 +1427,9 @@ class __$$ValidandoDatosImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $OcrResultCopyWith<$Res> get ocrResult {
-    return $OcrResultCopyWith<$Res>(_value.ocrResult, (value) {
-      return _then(_value.copyWith(ocrResult: value));
+  $RecepcionPaqueteCopyWith<$Res> get recepcion {
+    return $RecepcionPaqueteCopyWith<$Res>(_value.recepcion, (value) {
+      return _then(_value.copyWith(recepcion: value));
     });
   }
 }
@@ -1082,26 +1438,26 @@ class __$$ValidandoDatosImplCopyWithImpl<$Res>
 
 class _$ValidandoDatosImpl implements _ValidandoDatos {
   const _$ValidandoDatosImpl({
-    required this.ocrResult,
+    required this.recepcion,
     required this.imagenPath,
-    required final List<Punto> puntos,
-  }) : _puntos = puntos;
+    required final List<Punto> puntosDestino,
+  }) : _puntosDestino = puntosDestino;
 
   @override
-  final OcrResult ocrResult;
+  final RecepcionPaquete recepcion;
   @override
   final String imagenPath;
-  final List<Punto> _puntos;
+  final List<Punto> _puntosDestino;
   @override
-  List<Punto> get puntos {
-    if (_puntos is EqualUnmodifiableListView) return _puntos;
+  List<Punto> get puntosDestino {
+    if (_puntosDestino is EqualUnmodifiableListView) return _puntosDestino;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_puntos);
+    return EqualUnmodifiableListView(_puntosDestino);
   }
 
   @override
   String toString() {
-    return 'RecepcionState.validandoDatos(ocrResult: $ocrResult, imagenPath: $imagenPath, puntos: $puntos)';
+    return 'RecepcionState.validandoDatos(recepcion: $recepcion, imagenPath: $imagenPath, puntosDestino: $puntosDestino)';
   }
 
   @override
@@ -1109,19 +1465,22 @@ class _$ValidandoDatosImpl implements _ValidandoDatos {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ValidandoDatosImpl &&
-            (identical(other.ocrResult, ocrResult) ||
-                other.ocrResult == ocrResult) &&
+            (identical(other.recepcion, recepcion) ||
+                other.recepcion == recepcion) &&
             (identical(other.imagenPath, imagenPath) ||
                 other.imagenPath == imagenPath) &&
-            const DeepCollectionEquality().equals(other._puntos, _puntos));
+            const DeepCollectionEquality().equals(
+              other._puntosDestino,
+              _puntosDestino,
+            ));
   }
 
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    ocrResult,
+    recepcion,
     imagenPath,
-    const DeepCollectionEquality().hash(_puntos),
+    const DeepCollectionEquality().hash(_puntosDestino),
   );
 
   /// Create a copy of RecepcionState
@@ -1140,21 +1499,35 @@ class _$ValidandoDatosImpl implements _ValidandoDatos {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
-    return validandoDatos(ocrResult, imagenPath, puntos);
+    return validandoDatos(recepcion, imagenPath, puntosDestino);
   }
 
   @override
@@ -1162,20 +1535,35 @@ class _$ValidandoDatosImpl implements _ValidandoDatos {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
-    return validandoDatos?.call(ocrResult, imagenPath, puntos);
+    return validandoDatos?.call(recepcion, imagenPath, puntosDestino);
   }
 
   @override
@@ -1183,22 +1571,37 @@ class _$ValidandoDatosImpl implements _ValidandoDatos {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
     if (validandoDatos != null) {
-      return validandoDatos(ocrResult, imagenPath, puntos);
+      return validandoDatos(recepcion, imagenPath, puntosDestino);
     }
     return orElse();
   }
@@ -1208,11 +1611,12 @@ class _$ValidandoDatosImpl implements _ValidandoDatos {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
@@ -1224,11 +1628,12 @@ class _$ValidandoDatosImpl implements _ValidandoDatos {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
@@ -1240,11 +1645,12 @@ class _$ValidandoDatosImpl implements _ValidandoDatos {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -1258,14 +1664,14 @@ class _$ValidandoDatosImpl implements _ValidandoDatos {
 
 abstract class _ValidandoDatos implements RecepcionState {
   const factory _ValidandoDatos({
-    required final OcrResult ocrResult,
+    required final RecepcionPaquete recepcion,
     required final String imagenPath,
-    required final List<Punto> puntos,
+    required final List<Punto> puntosDestino,
   }) = _$ValidandoDatosImpl;
 
-  OcrResult get ocrResult;
+  RecepcionPaquete get recepcion;
   String get imagenPath;
-  List<Punto> get puntos;
+  List<Punto> get puntosDestino;
 
   /// Create a copy of RecepcionState
   /// with the given fields replaced by the non-null parameter values.
@@ -1275,65 +1681,162 @@ abstract class _ValidandoDatos implements RecepcionState {
 }
 
 /// @nodoc
-abstract class _$$GuardandoPaqueteImplCopyWith<$Res> {
-  factory _$$GuardandoPaqueteImplCopyWith(
-    _$GuardandoPaqueteImpl value,
-    $Res Function(_$GuardandoPaqueteImpl) then,
-  ) = __$$GuardandoPaqueteImplCopyWithImpl<$Res>;
+abstract class _$$GuardandoCambiosImplCopyWith<$Res> {
+  factory _$$GuardandoCambiosImplCopyWith(
+    _$GuardandoCambiosImpl value,
+    $Res Function(_$GuardandoCambiosImpl) then,
+  ) = __$$GuardandoCambiosImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({
+    RecepcionPaquete recepcion,
+    String imagenPath,
+    List<Punto> puntosDestino,
+  });
+
+  $RecepcionPaqueteCopyWith<$Res> get recepcion;
 }
 
 /// @nodoc
-class __$$GuardandoPaqueteImplCopyWithImpl<$Res>
-    extends _$RecepcionStateCopyWithImpl<$Res, _$GuardandoPaqueteImpl>
-    implements _$$GuardandoPaqueteImplCopyWith<$Res> {
-  __$$GuardandoPaqueteImplCopyWithImpl(
-    _$GuardandoPaqueteImpl _value,
-    $Res Function(_$GuardandoPaqueteImpl) _then,
+class __$$GuardandoCambiosImplCopyWithImpl<$Res>
+    extends _$RecepcionStateCopyWithImpl<$Res, _$GuardandoCambiosImpl>
+    implements _$$GuardandoCambiosImplCopyWith<$Res> {
+  __$$GuardandoCambiosImplCopyWithImpl(
+    _$GuardandoCambiosImpl _value,
+    $Res Function(_$GuardandoCambiosImpl) _then,
   ) : super(_value, _then);
 
   /// Create a copy of RecepcionState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? recepcion = null,
+    Object? imagenPath = null,
+    Object? puntosDestino = null,
+  }) {
+    return _then(
+      _$GuardandoCambiosImpl(
+        recepcion: null == recepcion
+            ? _value.recepcion
+            : recepcion // ignore: cast_nullable_to_non_nullable
+                  as RecepcionPaquete,
+        imagenPath: null == imagenPath
+            ? _value.imagenPath
+            : imagenPath // ignore: cast_nullable_to_non_nullable
+                  as String,
+        puntosDestino: null == puntosDestino
+            ? _value._puntosDestino
+            : puntosDestino // ignore: cast_nullable_to_non_nullable
+                  as List<Punto>,
+      ),
+    );
+  }
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RecepcionPaqueteCopyWith<$Res> get recepcion {
+    return $RecepcionPaqueteCopyWith<$Res>(_value.recepcion, (value) {
+      return _then(_value.copyWith(recepcion: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$GuardandoPaqueteImpl implements _GuardandoPaquete {
-  const _$GuardandoPaqueteImpl();
+class _$GuardandoCambiosImpl implements _GuardandoCambios {
+  const _$GuardandoCambiosImpl({
+    required this.recepcion,
+    required this.imagenPath,
+    required final List<Punto> puntosDestino,
+  }) : _puntosDestino = puntosDestino;
+
+  @override
+  final RecepcionPaquete recepcion;
+  @override
+  final String imagenPath;
+  final List<Punto> _puntosDestino;
+  @override
+  List<Punto> get puntosDestino {
+    if (_puntosDestino is EqualUnmodifiableListView) return _puntosDestino;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_puntosDestino);
+  }
 
   @override
   String toString() {
-    return 'RecepcionState.guardandoPaquete()';
+    return 'RecepcionState.guardandoCambios(recepcion: $recepcion, imagenPath: $imagenPath, puntosDestino: $puntosDestino)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GuardandoPaqueteImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$GuardandoCambiosImpl &&
+            (identical(other.recepcion, recepcion) ||
+                other.recepcion == recepcion) &&
+            (identical(other.imagenPath, imagenPath) ||
+                other.imagenPath == imagenPath) &&
+            const DeepCollectionEquality().equals(
+              other._puntosDestino,
+              _puntosDestino,
+            ));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+    runtimeType,
+    recepcion,
+    imagenPath,
+    const DeepCollectionEquality().hash(_puntosDestino),
+  );
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GuardandoCambiosImplCopyWith<_$GuardandoCambiosImpl> get copyWith =>
+      __$$GuardandoCambiosImplCopyWithImpl<_$GuardandoCambiosImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
-    return guardandoPaquete();
+    return guardandoCambios(recepcion, imagenPath, puntosDestino);
   }
 
   @override
@@ -1341,20 +1844,35 @@ class _$GuardandoPaqueteImpl implements _GuardandoPaquete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
-    return guardandoPaquete?.call();
+    return guardandoCambios?.call(recepcion, imagenPath, puntosDestino);
   }
 
   @override
@@ -1362,22 +1880,37 @@ class _$GuardandoPaqueteImpl implements _GuardandoPaquete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
-    if (guardandoPaquete != null) {
-      return guardandoPaquete();
+    if (guardandoCambios != null) {
+      return guardandoCambios(recepcion, imagenPath, puntosDestino);
     }
     return orElse();
   }
@@ -1387,15 +1920,16 @@ class _$GuardandoPaqueteImpl implements _GuardandoPaquete {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
-    return guardandoPaquete(this);
+    return guardandoCambios(this);
   }
 
   @override
@@ -1403,15 +1937,16 @@ class _$GuardandoPaqueteImpl implements _GuardandoPaquete {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
-    return guardandoPaquete?.call(this);
+    return guardandoCambios?.call(this);
   }
 
   @override
@@ -1419,24 +1954,317 @@ class _$GuardandoPaqueteImpl implements _GuardandoPaquete {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (guardandoPaquete != null) {
-      return guardandoPaquete(this);
+    if (guardandoCambios != null) {
+      return guardandoCambios(this);
     }
     return orElse();
   }
 }
 
-abstract class _GuardandoPaquete implements RecepcionState {
-  const factory _GuardandoPaquete() = _$GuardandoPaqueteImpl;
+abstract class _GuardandoCambios implements RecepcionState {
+  const factory _GuardandoCambios({
+    required final RecepcionPaquete recepcion,
+    required final String imagenPath,
+    required final List<Punto> puntosDestino,
+  }) = _$GuardandoCambiosImpl;
+
+  RecepcionPaquete get recepcion;
+  String get imagenPath;
+  List<Punto> get puntosDestino;
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GuardandoCambiosImplCopyWith<_$GuardandoCambiosImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ConvirtiendoPaqueteImplCopyWith<$Res> {
+  factory _$$ConvirtiendoPaqueteImplCopyWith(
+    _$ConvirtiendoPaqueteImpl value,
+    $Res Function(_$ConvirtiendoPaqueteImpl) then,
+  ) = __$$ConvirtiendoPaqueteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RecepcionPaquete recepcion, String imagenPath});
+
+  $RecepcionPaqueteCopyWith<$Res> get recepcion;
+}
+
+/// @nodoc
+class __$$ConvirtiendoPaqueteImplCopyWithImpl<$Res>
+    extends _$RecepcionStateCopyWithImpl<$Res, _$ConvirtiendoPaqueteImpl>
+    implements _$$ConvirtiendoPaqueteImplCopyWith<$Res> {
+  __$$ConvirtiendoPaqueteImplCopyWithImpl(
+    _$ConvirtiendoPaqueteImpl _value,
+    $Res Function(_$ConvirtiendoPaqueteImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? recepcion = null, Object? imagenPath = null}) {
+    return _then(
+      _$ConvirtiendoPaqueteImpl(
+        recepcion: null == recepcion
+            ? _value.recepcion
+            : recepcion // ignore: cast_nullable_to_non_nullable
+                  as RecepcionPaquete,
+        imagenPath: null == imagenPath
+            ? _value.imagenPath
+            : imagenPath // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RecepcionPaqueteCopyWith<$Res> get recepcion {
+    return $RecepcionPaqueteCopyWith<$Res>(_value.recepcion, (value) {
+      return _then(_value.copyWith(recepcion: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ConvirtiendoPaqueteImpl implements _ConvirtiendoPaquete {
+  const _$ConvirtiendoPaqueteImpl({
+    required this.recepcion,
+    required this.imagenPath,
+  });
+
+  @override
+  final RecepcionPaquete recepcion;
+  @override
+  final String imagenPath;
+
+  @override
+  String toString() {
+    return 'RecepcionState.convirtiendoPaquete(recepcion: $recepcion, imagenPath: $imagenPath)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConvirtiendoPaqueteImpl &&
+            (identical(other.recepcion, recepcion) ||
+                other.recepcion == recepcion) &&
+            (identical(other.imagenPath, imagenPath) ||
+                other.imagenPath == imagenPath));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, recepcion, imagenPath);
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConvirtiendoPaqueteImplCopyWith<_$ConvirtiendoPaqueteImpl> get copyWith =>
+      __$$ConvirtiendoPaqueteImplCopyWithImpl<_$ConvirtiendoPaqueteImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() capturandoImagen,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    validandoDatos,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
+    required TResult Function(Paquete paquete) paqueteCreado,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
+  }) {
+    return convirtiendoPaquete(recepcion, imagenPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? capturandoImagen,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    validandoDatos,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
+    TResult? Function(Paquete paquete)? paqueteCreado,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
+  }) {
+    return convirtiendoPaquete?.call(recepcion, imagenPath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? capturandoImagen,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    validandoDatos,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
+    TResult Function(Paquete paquete)? paqueteCreado,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
+    required TResult orElse(),
+  }) {
+    if (convirtiendoPaquete != null) {
+      return convirtiendoPaquete(recepcion, imagenPath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_CapturandoImagen value) capturandoImagen,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
+    required TResult Function(_CargandoPuntos value) cargandoPuntos,
+    required TResult Function(_ValidandoDatos value) validandoDatos,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
+    required TResult Function(_PaqueteCreado value) paqueteCreado,
+    required TResult Function(_Error value) error,
+  }) {
+    return convirtiendoPaquete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_CapturandoImagen value)? capturandoImagen,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
+    TResult? Function(_CargandoPuntos value)? cargandoPuntos,
+    TResult? Function(_ValidandoDatos value)? validandoDatos,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
+    TResult? Function(_PaqueteCreado value)? paqueteCreado,
+    TResult? Function(_Error value)? error,
+  }) {
+    return convirtiendoPaquete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_CapturandoImagen value)? capturandoImagen,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
+    TResult Function(_CargandoPuntos value)? cargandoPuntos,
+    TResult Function(_ValidandoDatos value)? validandoDatos,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
+    TResult Function(_PaqueteCreado value)? paqueteCreado,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (convirtiendoPaquete != null) {
+      return convirtiendoPaquete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConvirtiendoPaquete implements RecepcionState {
+  const factory _ConvirtiendoPaquete({
+    required final RecepcionPaquete recepcion,
+    required final String imagenPath,
+  }) = _$ConvirtiendoPaqueteImpl;
+
+  RecepcionPaquete get recepcion;
+  String get imagenPath;
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ConvirtiendoPaqueteImplCopyWith<_$ConvirtiendoPaqueteImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1523,19 +2351,33 @@ class _$PaqueteCreadoImpl implements _PaqueteCreado {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
     return paqueteCreado(paquete);
   }
@@ -1545,18 +2387,33 @@ class _$PaqueteCreadoImpl implements _PaqueteCreado {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
     return paqueteCreado?.call(paquete);
   }
@@ -1566,18 +2423,33 @@ class _$PaqueteCreadoImpl implements _PaqueteCreado {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
     if (paqueteCreado != null) {
@@ -1591,11 +2463,12 @@ class _$PaqueteCreadoImpl implements _PaqueteCreado {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
@@ -1607,11 +2480,12 @@ class _$PaqueteCreadoImpl implements _PaqueteCreado {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
@@ -1623,11 +2497,12 @@ class _$PaqueteCreadoImpl implements _PaqueteCreado {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -1659,7 +2534,14 @@ abstract class _$$ErrorImplCopyWith<$Res> {
     $Res Function(_$ErrorImpl) then,
   ) = __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String mensaje, String? imagenPath});
+  $Res call({
+    String mensaje,
+    String? imagenPath,
+    RecepcionPaquete? recepcion,
+    List<Punto>? puntosDestino,
+  });
+
+  $RecepcionPaqueteCopyWith<$Res>? get recepcion;
 }
 
 /// @nodoc
@@ -1675,7 +2557,12 @@ class __$$ErrorImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? mensaje = null, Object? imagenPath = freezed}) {
+  $Res call({
+    Object? mensaje = null,
+    Object? imagenPath = freezed,
+    Object? recepcion = freezed,
+    Object? puntosDestino = freezed,
+  }) {
     return _then(
       _$ErrorImpl(
         mensaje: null == mensaje
@@ -1686,24 +2573,62 @@ class __$$ErrorImplCopyWithImpl<$Res>
             ? _value.imagenPath
             : imagenPath // ignore: cast_nullable_to_non_nullable
                   as String?,
+        recepcion: freezed == recepcion
+            ? _value.recepcion
+            : recepcion // ignore: cast_nullable_to_non_nullable
+                  as RecepcionPaquete?,
+        puntosDestino: freezed == puntosDestino
+            ? _value._puntosDestino
+            : puntosDestino // ignore: cast_nullable_to_non_nullable
+                  as List<Punto>?,
       ),
     );
+  }
+
+  /// Create a copy of RecepcionState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RecepcionPaqueteCopyWith<$Res>? get recepcion {
+    if (_value.recepcion == null) {
+      return null;
+    }
+
+    return $RecepcionPaqueteCopyWith<$Res>(_value.recepcion!, (value) {
+      return _then(_value.copyWith(recepcion: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl({required this.mensaje, this.imagenPath});
+  const _$ErrorImpl({
+    required this.mensaje,
+    this.imagenPath,
+    this.recepcion,
+    final List<Punto>? puntosDestino,
+  }) : _puntosDestino = puntosDestino;
 
   @override
   final String mensaje;
   @override
   final String? imagenPath;
+  @override
+  final RecepcionPaquete? recepcion;
+  final List<Punto>? _puntosDestino;
+  @override
+  List<Punto>? get puntosDestino {
+    final value = _puntosDestino;
+    if (value == null) return null;
+    if (_puntosDestino is EqualUnmodifiableListView) return _puntosDestino;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'RecepcionState.error(mensaje: $mensaje, imagenPath: $imagenPath)';
+    return 'RecepcionState.error(mensaje: $mensaje, imagenPath: $imagenPath, recepcion: $recepcion, puntosDestino: $puntosDestino)';
   }
 
   @override
@@ -1713,11 +2638,23 @@ class _$ErrorImpl implements _Error {
             other is _$ErrorImpl &&
             (identical(other.mensaje, mensaje) || other.mensaje == mensaje) &&
             (identical(other.imagenPath, imagenPath) ||
-                other.imagenPath == imagenPath));
+                other.imagenPath == imagenPath) &&
+            (identical(other.recepcion, recepcion) ||
+                other.recepcion == recepcion) &&
+            const DeepCollectionEquality().equals(
+              other._puntosDestino,
+              _puntosDestino,
+            ));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mensaje, imagenPath);
+  int get hashCode => Object.hash(
+    runtimeType,
+    mensaje,
+    imagenPath,
+    recepcion,
+    const DeepCollectionEquality().hash(_puntosDestino),
+  );
 
   /// Create a copy of RecepcionState
   /// with the given fields replaced by the non-null parameter values.
@@ -1732,21 +2669,35 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() capturandoImagen,
-    required TResult Function() procesandoOcr,
-    required TResult Function(OcrResult resultado, String imagenPath)
-    ocrCompletado,
-    required TResult Function() cargandoPuntos,
+    required TResult Function() procesandoRecepcion,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    recepcionCreada,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    cargandoPuntos,
     required TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )
     validandoDatos,
-    required TResult Function() guardandoPaquete,
+    required TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )
+    guardandoCambios,
+    required TResult Function(RecepcionPaquete recepcion, String imagenPath)
+    convirtiendoPaquete,
     required TResult Function(Paquete paquete) paqueteCreado,
-    required TResult Function(String mensaje, String? imagenPath) error,
+    required TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )
+    error,
   }) {
-    return error(mensaje, imagenPath);
+    return error(mensaje, imagenPath, recepcion, puntosDestino);
   }
 
   @override
@@ -1754,20 +2705,35 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? capturandoImagen,
-    TResult? Function()? procesandoOcr,
-    TResult? Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult? Function()? cargandoPuntos,
+    TResult? Function()? procesandoRecepcion,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult? Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult? Function()? guardandoPaquete,
+    TResult? Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult? Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult? Function(Paquete paquete)? paqueteCreado,
-    TResult? Function(String mensaje, String? imagenPath)? error,
+    TResult? Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
   }) {
-    return error?.call(mensaje, imagenPath);
+    return error?.call(mensaje, imagenPath, recepcion, puntosDestino);
   }
 
   @override
@@ -1775,22 +2741,37 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? capturandoImagen,
-    TResult Function()? procesandoOcr,
-    TResult Function(OcrResult resultado, String imagenPath)? ocrCompletado,
-    TResult Function()? cargandoPuntos,
+    TResult Function()? procesandoRecepcion,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    recepcionCreada,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    cargandoPuntos,
     TResult Function(
-      OcrResult ocrResult,
+      RecepcionPaquete recepcion,
       String imagenPath,
-      List<Punto> puntos,
+      List<Punto> puntosDestino,
     )?
     validandoDatos,
-    TResult Function()? guardandoPaquete,
+    TResult Function(
+      RecepcionPaquete recepcion,
+      String imagenPath,
+      List<Punto> puntosDestino,
+    )?
+    guardandoCambios,
+    TResult Function(RecepcionPaquete recepcion, String imagenPath)?
+    convirtiendoPaquete,
     TResult Function(Paquete paquete)? paqueteCreado,
-    TResult Function(String mensaje, String? imagenPath)? error,
+    TResult Function(
+      String mensaje,
+      String? imagenPath,
+      RecepcionPaquete? recepcion,
+      List<Punto>? puntosDestino,
+    )?
+    error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(mensaje, imagenPath);
+      return error(mensaje, imagenPath, recepcion, puntosDestino);
     }
     return orElse();
   }
@@ -1800,11 +2781,12 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_CapturandoImagen value) capturandoImagen,
-    required TResult Function(_ProcesandoOcr value) procesandoOcr,
-    required TResult Function(_OcrCompletado value) ocrCompletado,
+    required TResult Function(_ProcesandoRecepcion value) procesandoRecepcion,
+    required TResult Function(_RecepcionCreada value) recepcionCreada,
     required TResult Function(_CargandoPuntos value) cargandoPuntos,
     required TResult Function(_ValidandoDatos value) validandoDatos,
-    required TResult Function(_GuardandoPaquete value) guardandoPaquete,
+    required TResult Function(_GuardandoCambios value) guardandoCambios,
+    required TResult Function(_ConvirtiendoPaquete value) convirtiendoPaquete,
     required TResult Function(_PaqueteCreado value) paqueteCreado,
     required TResult Function(_Error value) error,
   }) {
@@ -1816,11 +2798,12 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_CapturandoImagen value)? capturandoImagen,
-    TResult? Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult? Function(_OcrCompletado value)? ocrCompletado,
+    TResult? Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult? Function(_RecepcionCreada value)? recepcionCreada,
     TResult? Function(_CargandoPuntos value)? cargandoPuntos,
     TResult? Function(_ValidandoDatos value)? validandoDatos,
-    TResult? Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult? Function(_GuardandoCambios value)? guardandoCambios,
+    TResult? Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult? Function(_PaqueteCreado value)? paqueteCreado,
     TResult? Function(_Error value)? error,
   }) {
@@ -1832,11 +2815,12 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_CapturandoImagen value)? capturandoImagen,
-    TResult Function(_ProcesandoOcr value)? procesandoOcr,
-    TResult Function(_OcrCompletado value)? ocrCompletado,
+    TResult Function(_ProcesandoRecepcion value)? procesandoRecepcion,
+    TResult Function(_RecepcionCreada value)? recepcionCreada,
     TResult Function(_CargandoPuntos value)? cargandoPuntos,
     TResult Function(_ValidandoDatos value)? validandoDatos,
-    TResult Function(_GuardandoPaquete value)? guardandoPaquete,
+    TResult Function(_GuardandoCambios value)? guardandoCambios,
+    TResult Function(_ConvirtiendoPaquete value)? convirtiendoPaquete,
     TResult Function(_PaqueteCreado value)? paqueteCreado,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -1852,10 +2836,14 @@ abstract class _Error implements RecepcionState {
   const factory _Error({
     required final String mensaje,
     final String? imagenPath,
+    final RecepcionPaquete? recepcion,
+    final List<Punto>? puntosDestino,
   }) = _$ErrorImpl;
 
   String get mensaje;
   String? get imagenPath;
+  RecepcionPaquete? get recepcion;
+  List<Punto>? get puntosDestino;
 
   /// Create a copy of RecepcionState
   /// with the given fields replaced by the non-null parameter values.

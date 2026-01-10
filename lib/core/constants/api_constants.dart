@@ -2,7 +2,7 @@ class ApiConstants {
   ApiConstants._();
 
   // Base URL - Cambiar según el ambiente
-  static const String baseUrl = 'http://localhost:8000/api';
+  static const String baseUrl = 'https://lx21bb5n-3011.use2.devtunnels.ms/api';
 
   // Auth endpoints
   static const String login = '/auth/login';
@@ -20,6 +20,11 @@ class ApiConstants {
   // Puntos endpoints
   static const String puntos = '/puntos';
   static const String puntosActivos = '/puntos/activos';
+
+  // Recepciones endpoints
+  static const String recepciones = '/recepciones';
+  static const String recepcionesEstadisticas = '/recepciones/estadisticas';
+  static const String recepcionesPendientes = '/recepciones/pendientes';
 
   // Headers
   static const String contentType = 'application/json';
