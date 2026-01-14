@@ -1,0 +1,19 @@
+Analyzing sigl-frontend-flutter...                              
+
+  error - The named parameter 'message' is required, but there's no corresponding argument - lib\features\caja\data\repositories\caja_repository.dart:26:19 - missing_required_argument
+  error - Too many positional arguments: 0 expected, but 1 found - lib\features\caja\data\repositories\caja_repository.dart:26:33 - extra_positional_arguments_could_be_named
+  error - The named parameter 'message' is required, but there's no corresponding argument - lib\features\caja\data\repositories\caja_repository.dart:42:19 - missing_required_argument
+  error - Too many positional arguments: 0 expected, but 1 found - lib\features\caja\data\repositories\caja_repository.dart:42:33 - extra_positional_arguments_could_be_named
+warning - Unused import: 'package:dio/dio.dart' - lib\features\caja\presentation\providers\caja_provider.dart:3:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\caja\presentation\screens\pendientes_screen.dart:158:46 - deprecated_member_use
+   info - Use 'const' with the constructor to improve performance - lib\features\caja\presentation\screens\pendientes_screen.dart:163:28 - prefer_const_constructors
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\caja\presentation\widgets\contador_caja_widget.dart:59:33 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\caja\presentation\widgets\contador_caja_widget.dart:67:40 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\caja\presentation\widgets\contador_caja_widget.dart:88:39 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\caja\presentation\widgets\contador_caja_widget.dart:131:43 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\caja\presentation\widgets\contador_caja_widget.dart:139:41 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\caja\presentation\widgets\contador_caja_widget.dart:165:33 - deprecated_member_use
+  error - The named parameter 'validator' isn't defined - lib\features\recepcion\presentation\screens\validacion_datos_screen.dart:390:21 - undefined_named_parameter
+  error - The named parameter 'validator' isn't defined - lib\features\recepcion\presentation\screens\validacion_datos_screen.dart:416:21 - undefined_named_parameter
+  error - The named parameter 'validator' isn't defined - lib\features\recepcion\presentation\screens\validacion_datos_screen.dart:443:15 - undefined_named_parameter
+

@@ -7,8 +7,8 @@ import '../features/auth/presentation/screens/login_screen.dart';
 import '../features/auth/presentation/screens/register_screen.dart';
 import '../features/home/presentation/screens/home_screen.dart';
 import '../features/recepcion/presentation/screens/captura_vineta_screen.dart';
-import '../features/recepcion/presentation/screens/validacion_datos_screen.dart';
 import '../features/recepcion/presentation/screens/confirmacion_screen.dart';
+import '../features/caja/presentation/screens/pendientes_screen.dart';
 
 // Route names
 class AppRoutes {
@@ -18,8 +18,9 @@ class AppRoutes {
   static const String home = '/home';
   // Recepcion routes
   static const String recepcionCaptura = '/recepcion/captura';
-  static const String recepcionValidar = '/recepcion/validar';
   static const String recepcionConfirmacion = '/recepcion/confirmacion';
+  // Caja routes
+  static const String cajaPendientes = '/caja/pendientes';
 }
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -79,14 +80,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const CapturaVinetaScreen(),
       ),
       GoRoute(
-        path: AppRoutes.recepcionValidar,
-        name: 'recepcion-validar',
-        builder: (context, state) => const ValidacionDatosScreen(),
-      ),
-      GoRoute(
         path: AppRoutes.recepcionConfirmacion,
         name: 'recepcion-confirmacion',
         builder: (context, state) => const ConfirmacionScreen(),
+      ),
+      // Caja routes
+      GoRoute(
+        path: AppRoutes.cajaPendientes,
+        name: 'caja-pendientes',
+        builder: (context, state) => const PendientesScreen(),
       ),
     ],
     errorBuilder: (context, state) => ErrorScreen(error: state.error),

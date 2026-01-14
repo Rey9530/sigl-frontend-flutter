@@ -48,6 +48,7 @@ class RecepcionPaquete with _$RecepcionPaquete {
 
   const factory RecepcionPaquete({
     @JsonKey(name: 'id_recepcion', fromJson: _stringToInt) required int id,
+    @JsonKey(name: 'codigo_rastreo') required String codigoRastreo,
     @JsonKey(name: 'imagen_url') required String imagenUrl,
     String? vendedor,
     String? cliente,

@@ -1,0 +1,5 @@
+Analyzing sigl-frontend-flutter...                              
+
+warning - Unused import: '../../domain/entities/recepcion_paquete.dart' - lib\features\recepcion\presentation\providers\recepcion_provider.dart:4:8 - unused_import
+   info - Unnecessary use of multiple underscores - lib\features\recepcion\presentation\screens\captura_vineta_screen.dart:155:30 - unnecessary_underscores
+

@@ -23,6 +23,8 @@ RecepcionPaquete _$RecepcionPaqueteFromJson(Map<String, dynamic> json) {
 mixin _$RecepcionPaquete {
   @JsonKey(name: 'id_recepcion', fromJson: _stringToInt)
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'codigo_rastreo')
+  String get codigoRastreo => throw _privateConstructorUsedError;
   @JsonKey(name: 'imagen_url')
   String get imagenUrl => throw _privateConstructorUsedError;
   String? get vendedor => throw _privateConstructorUsedError;
@@ -76,6 +78,7 @@ abstract class $RecepcionPaqueteCopyWith<$Res> {
   @useResult
   $Res call({
     @JsonKey(name: 'id_recepcion', fromJson: _stringToInt) int id,
+    @JsonKey(name: 'codigo_rastreo') String codigoRastreo,
     @JsonKey(name: 'imagen_url') String imagenUrl,
     String? vendedor,
     String? cliente,
@@ -123,6 +126,7 @@ class _$RecepcionPaqueteCopyWithImpl<$Res, $Val extends RecepcionPaquete>
   @override
   $Res call({
     Object? id = null,
+    Object? codigoRastreo = null,
     Object? imagenUrl = null,
     Object? vendedor = freezed,
     Object? cliente = freezed,
@@ -150,6 +154,10 @@ class _$RecepcionPaqueteCopyWithImpl<$Res, $Val extends RecepcionPaquete>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                       as int,
+            codigoRastreo: null == codigoRastreo
+                ? _value.codigoRastreo
+                : codigoRastreo // ignore: cast_nullable_to_non_nullable
+                      as String,
             imagenUrl: null == imagenUrl
                 ? _value.imagenUrl
                 : imagenUrl // ignore: cast_nullable_to_non_nullable
@@ -285,6 +293,7 @@ abstract class _$$RecepcionPaqueteImplCopyWith<$Res>
   @useResult
   $Res call({
     @JsonKey(name: 'id_recepcion', fromJson: _stringToInt) int id,
+    @JsonKey(name: 'codigo_rastreo') String codigoRastreo,
     @JsonKey(name: 'imagen_url') String imagenUrl,
     String? vendedor,
     String? cliente,
@@ -334,6 +343,7 @@ class __$$RecepcionPaqueteImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? codigoRastreo = null,
     Object? imagenUrl = null,
     Object? vendedor = freezed,
     Object? cliente = freezed,
@@ -361,6 +371,10 @@ class __$$RecepcionPaqueteImplCopyWithImpl<$Res>
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
                   as int,
+        codigoRastreo: null == codigoRastreo
+            ? _value.codigoRastreo
+            : codigoRastreo // ignore: cast_nullable_to_non_nullable
+                  as String,
         imagenUrl: null == imagenUrl
             ? _value.imagenUrl
             : imagenUrl // ignore: cast_nullable_to_non_nullable
@@ -451,6 +465,7 @@ class __$$RecepcionPaqueteImplCopyWithImpl<$Res>
 class _$RecepcionPaqueteImpl extends _RecepcionPaquete {
   const _$RecepcionPaqueteImpl({
     @JsonKey(name: 'id_recepcion', fromJson: _stringToInt) required this.id,
+    @JsonKey(name: 'codigo_rastreo') required this.codigoRastreo,
     @JsonKey(name: 'imagen_url') required this.imagenUrl,
     this.vendedor,
     this.cliente,
@@ -484,6 +499,9 @@ class _$RecepcionPaqueteImpl extends _RecepcionPaquete {
   @override
   @JsonKey(name: 'id_recepcion', fromJson: _stringToInt)
   final int id;
+  @override
+  @JsonKey(name: 'codigo_rastreo')
+  final String codigoRastreo;
   @override
   @JsonKey(name: 'imagen_url')
   final String imagenUrl;
@@ -548,7 +566,7 @@ class _$RecepcionPaqueteImpl extends _RecepcionPaquete {
 
   @override
   String toString() {
-    return 'RecepcionPaquete(id: $id, imagenUrl: $imagenUrl, vendedor: $vendedor, cliente: $cliente, telefono: $telefono, diaEntrega: $diaEntrega, destino: $destino, encomendista: $encomendista, precioProducto: $precioProducto, costoEnvio: $costoEnvio, total: $total, confianzaGlobal: $confianzaGlobal, confianzaDetalle: $confianzaDetalle, estado: $estado, notasRevision: $notasRevision, puntoServicio: $puntoServicio, usuarioRecepcion: $usuarioRecepcion, paquete: $paquete, creadoEn: $creadoEn, actualizadoEn: $actualizadoEn, convertidoEn: $convertidoEn)';
+    return 'RecepcionPaquete(id: $id, codigoRastreo: $codigoRastreo, imagenUrl: $imagenUrl, vendedor: $vendedor, cliente: $cliente, telefono: $telefono, diaEntrega: $diaEntrega, destino: $destino, encomendista: $encomendista, precioProducto: $precioProducto, costoEnvio: $costoEnvio, total: $total, confianzaGlobal: $confianzaGlobal, confianzaDetalle: $confianzaDetalle, estado: $estado, notasRevision: $notasRevision, puntoServicio: $puntoServicio, usuarioRecepcion: $usuarioRecepcion, paquete: $paquete, creadoEn: $creadoEn, actualizadoEn: $actualizadoEn, convertidoEn: $convertidoEn)';
   }
 
   @override
@@ -557,6 +575,8 @@ class _$RecepcionPaqueteImpl extends _RecepcionPaquete {
         (other.runtimeType == runtimeType &&
             other is _$RecepcionPaqueteImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.codigoRastreo, codigoRastreo) ||
+                other.codigoRastreo == codigoRastreo) &&
             (identical(other.imagenUrl, imagenUrl) ||
                 other.imagenUrl == imagenUrl) &&
             (identical(other.vendedor, vendedor) ||
@@ -601,6 +621,7 @@ class _$RecepcionPaqueteImpl extends _RecepcionPaquete {
   int get hashCode => Object.hashAll([
     runtimeType,
     id,
+    codigoRastreo,
     imagenUrl,
     vendedor,
     cliente,
@@ -644,6 +665,7 @@ abstract class _RecepcionPaquete extends RecepcionPaquete {
   const factory _RecepcionPaquete({
     @JsonKey(name: 'id_recepcion', fromJson: _stringToInt)
     required final int id,
+    @JsonKey(name: 'codigo_rastreo') required final String codigoRastreo,
     @JsonKey(name: 'imagen_url') required final String imagenUrl,
     final String? vendedor,
     final String? cliente,
@@ -677,6 +699,9 @@ abstract class _RecepcionPaquete extends RecepcionPaquete {
   @override
   @JsonKey(name: 'id_recepcion', fromJson: _stringToInt)
   int get id;
+  @override
+  @JsonKey(name: 'codigo_rastreo')
+  String get codigoRastreo;
   @override
   @JsonKey(name: 'imagen_url')
   String get imagenUrl;

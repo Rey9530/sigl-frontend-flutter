@@ -186,9 +186,7 @@ class HomeScreen extends ConsumerWidget {
                     title: 'Mis Paquetes',
                     subtitle: 'Ver historial y estado de envíos',
                     color: AppColors.secondary,
-                    onTap: () {
-                      // TODO: Navegar a lista de paquetes
-                    },
+                    onTap: () => context.push('/caja/pendientes'),
                   ),
                   const SizedBox(height: 12),
 

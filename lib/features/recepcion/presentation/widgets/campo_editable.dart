@@ -11,7 +11,9 @@ class CampoEditable extends StatelessWidget {
   final String? prefijo;
   final bool enabled;
   final TextEditingController? controller;
+
   final int? maxLines;
+  final FormFieldValidator<String>? validator;
 
   const CampoEditable({
     super.key,
@@ -24,6 +26,7 @@ class CampoEditable extends StatelessWidget {
     this.enabled = true,
     this.controller,
     this.maxLines = 1,
+    this.validator,
   });
 
   bool get _confianzaBaja => (confianza ?? 0) < 50;
@@ -55,6 +58,8 @@ class CampoEditable extends StatelessWidget {
           keyboardType: keyboardType,
           enabled: enabled,
           maxLines: maxLines,
+
+          validator: validator,
           style: const TextStyle(fontSize: 15),
           decoration: InputDecoration(
             prefixText: prefijo,
@@ -83,7 +88,9 @@ class CampoEditable extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
-                color: _confianzaBaja ? Colors.red : Theme.of(context).primaryColor,
+                color: _confianzaBaja
+                    ? Colors.red
+                    : Theme.of(context).primaryColor,
                 width: 2,
               ),
             ),

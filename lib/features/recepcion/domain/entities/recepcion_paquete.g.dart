@@ -10,6 +10,7 @@ _$RecepcionPaqueteImpl _$$RecepcionPaqueteImplFromJson(
   Map<String, dynamic> json,
 ) => _$RecepcionPaqueteImpl(
   id: _stringToInt(json['id_recepcion']),
+  codigoRastreo: json['codigo_rastreo'] as String,
   imagenUrl: json['imagen_url'] as String,
   vendedor: json['vendedor'] as String?,
   cliente: json['cliente'] as String?,
@@ -50,6 +51,7 @@ Map<String, dynamic> _$$RecepcionPaqueteImplToJson(
   _$RecepcionPaqueteImpl instance,
 ) => <String, dynamic>{
   'id_recepcion': instance.id,
+  'codigo_rastreo': instance.codigoRastreo,
   'imagen_url': instance.imagenUrl,
   'vendedor': instance.vendedor,
   'cliente': instance.cliente,

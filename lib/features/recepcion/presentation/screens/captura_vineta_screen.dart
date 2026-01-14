@@ -152,10 +152,10 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
     // Escuchar cambios de estado para navegar
     ref.listen<RecepcionState>(recepcionProvider, (previous, next) {
       next.maybeWhen(
-        validandoDatos: (_, _, _) {
-          context.push('/recepcion/validar');
+        recepcionCreada: (rec, path) {
+          context.push('/recepcion/confirmacion');
         },
-        error: (mensaje, _, _, _) {
+        error: (mensaje, _) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(mensaje), backgroundColor: AppColors.error),
           );
@@ -178,8 +178,6 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
       body: state.maybeWhen(
         procesandoRecepcion: () =>
             const LoadingScreen(message: 'Procesando imagen con OCR...'),
-        cargandoPuntos: (_, _) =>
-            const LoadingScreen(message: 'Cargando puntos de destino...'),
         orElse: () => _buildCameraView(),
       ),
     );
