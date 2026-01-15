@@ -1,7 +1,0 @@
-Analyzing sigl-frontend-flutter...                              
-
-warning - The value of the field '_recepcionActual' isn't used - lib\features\recepcion\presentation\providers\recepcion_provider.dart:10:21 - unused_field
-  error - The named parameter 'validandoDatos' isn't defined - lib\features\recepcion\presentation\screens\captura_vineta_screen.dart:155:9 - undefined_named_parameter
-  error - The argument type 'Null Function(String, String?, dynamic, dynamic)' can't be assigned to the parameter type 'Null Function(String, String?)?'.  - lib\features\recepcion\presentation\screens\captura_vineta_screen.dart:158:16 - argument_type_not_assignable
-  error - The named parameter 'cargandoPuntos' isn't defined - lib\features\recepcion\presentation\screens\captura_vineta_screen.dart:181:9 - undefined_named_parameter
-

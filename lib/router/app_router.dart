@@ -9,6 +9,8 @@ import '../features/home/presentation/screens/home_screen.dart';
 import '../features/recepcion/presentation/screens/captura_vineta_screen.dart';
 import '../features/recepcion/presentation/screens/confirmacion_screen.dart';
 import '../features/caja/presentation/screens/pendientes_screen.dart';
+import '../features/entrega/presentation/screens/captura_entrega_screen.dart';
+import '../features/entrega/presentation/screens/confirmacion_entrega_screen.dart';
 
 // Route names
 class AppRoutes {
@@ -19,6 +21,9 @@ class AppRoutes {
   // Recepcion routes
   static const String recepcionCaptura = '/recepcion/captura';
   static const String recepcionConfirmacion = '/recepcion/confirmacion';
+  // Entrega routes
+  static const String entregaCaptura = '/entrega/captura';
+  static const String entregaConfirmacion = '/entrega/confirmacion';
   // Caja routes
   static const String cajaPendientes = '/caja/pendientes';
 }
@@ -83,6 +88,17 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.recepcionConfirmacion,
         name: 'recepcion-confirmacion',
         builder: (context, state) => const ConfirmacionScreen(),
+      ),
+      // Entrega routes
+      GoRoute(
+        path: AppRoutes.entregaCaptura,
+        name: 'entrega-captura',
+        builder: (context, state) => const CapturaEntregaScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.entregaConfirmacion,
+        name: 'entrega-confirmacion',
+        builder: (context, state) => const ConfirmacionEntregaScreen(),
       ),
       // Caja routes
       GoRoute(

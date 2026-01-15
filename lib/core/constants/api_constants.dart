@@ -27,6 +27,11 @@ class ApiConstants {
   static const String recepcionesPendientes = '/recepciones/pendientes';
   static String recepcionDetalle(int id) => '/recepciones/$id';
 
+  // Entregas endpoints
+  static const String entregas = '/entregas';
+  static String entregaEvidencia(int paqueteId) =>
+      '/entregas/$paqueteId/evidencia';
+
   // Headers
   static const String contentType = 'application/json';
   static const String accept = 'application/json';

@@ -180,6 +180,16 @@ class HomeScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 12),
 
+                  // Entregar Paquete
+                  _ActionTile(
+                    icon: Icons.local_shipping,
+                    title: 'Entregar Paquete',
+                    subtitle: 'Registrar entrega con evidencia',
+                    color: AppColors.success,
+                    onTap: () => context.push('/entrega/captura'),
+                  ),
+                  const SizedBox(height: 12),
+
                   // Paquetes List
                   _ActionTile(
                     icon: Icons.list_alt_outlined,
