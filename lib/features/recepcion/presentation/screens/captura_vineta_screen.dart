@@ -101,7 +101,7 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
       final image = await _cameraController!.takePicture();
       await ref
           .read(recepcionProvider.notifier)
-          .crearRecepcion(File(image.path), puntoId);
+          .extraerDatos(File(image.path), puntoId);
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -141,7 +141,7 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
     if (image != null) {
       await ref
           .read(recepcionProvider.notifier)
-          .crearRecepcion(File(image.path), puntoId);
+          .extraerDatos(File(image.path), puntoId);
     }
   }
 
@@ -152,8 +152,8 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
     // Escuchar cambios de estado para navegar
     ref.listen<RecepcionState>(recepcionProvider, (previous, next) {
       next.maybeWhen(
-        recepcionCreada: (rec, path) {
-          context.push('/recepcion/confirmacion');
+        datosExtraidos: (datos, path) {
+          context.push('/recepcion/verificacion');
         },
         error: (mensaje, _) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -176,6 +176,8 @@ class _CapturaVinetaScreenState extends ConsumerState<CapturaVinetaScreen> {
         ],
       ),
       body: state.maybeWhen(
+        extrayendoDatos: () =>
+            const LoadingScreen(message: 'Extrayendo datos de la vineta...'),
         procesandoRecepcion: () =>
             const LoadingScreen(message: 'Procesando imagen con OCR...'),
         orElse: () => _buildCameraView(),

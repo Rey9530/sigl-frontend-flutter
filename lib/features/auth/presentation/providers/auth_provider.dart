@@ -92,6 +92,33 @@ class AuthNotifier extends StateNotifier<AuthState> {
       },
     );
   }
+
+  Future<(bool, String?)> updatePassword({
+    required String passwordActual,
+    required String passwordNueva,
+  }) async {
+    final result = await _authRepository.updatePassword(
+      passwordActual,
+      passwordNueva,
+    );
+
+    return result.fold(
+      (failure) => (false, failure.message),
+      (_) => (true, null),
+    );
+  }
+
+  Future<(bool, String?)> updateProfile({required String nombre}) async {
+    final result = await _authRepository.updateProfile(nombre);
+
+    return result.fold(
+      (failure) => (false, failure.message),
+      (user) {
+        state = AuthState.authenticated(user);
+        return (true, null);
+      },
+    );
+  }
 }
 
 // Auth State Provider

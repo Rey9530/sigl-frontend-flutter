@@ -28,6 +28,9 @@ abstract class AuthRemoteDataSource {
     required String password,
     required String passwordConfirmation,
   });
+  Future<void> updatePassword(String passwordActual, String passwordNueva);
+  Future<UserModel> updateProfile(String nombre);
+  Future<UserModel> getProfile();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -66,6 +69,35 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
 
     return AuthResponse.fromJson(response.data);
+  }
+
+  @override
+  Future<void> updatePassword(String passwordActual, String passwordNueva) async {
+    await _apiClient.patch(
+      '/auth/password',
+      data: {
+        'password_actual': passwordActual,
+        'password_nueva': passwordNueva,
+      },
+    );
+  }
+
+  @override
+  Future<UserModel> updateProfile(String nombre) async {
+    final response = await _apiClient.patch(
+      '/auth/perfil',
+      data: {
+        'nombre': nombre,
+      },
+    );
+
+    return UserModel.fromJson(response.data);
+  }
+
+  @override
+  Future<UserModel> getProfile() async {
+    final response = await _apiClient.get('/auth/perfil');
+    return UserModel.fromJson(response.data);
   }
 }
 

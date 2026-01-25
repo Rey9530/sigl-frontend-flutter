@@ -21,6 +21,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -35,17 +36,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     // Ocultar teclado
     FocusScope.of(context).unfocus();
 
-    final success = await ref.read(authStateProvider.notifier).login(
+    setState(() => _isLoading = true);
+
+    await ref
+        .read(authStateProvider.notifier)
+        .login(
           email: _emailController.text.trim(),
           password: _passwordController.text,
         );
 
-    if (success && mounted) {
-      // La redirección se maneja en el router o aquí, en este caso el router
-      // redirige automáticamente al escuchar el authStateProvider, pero por seguridad
-      // también podemos forzarlo si el router no fuera reactivo de inmediato.
-      // Damos un pequeño delay para que el estado se propague si es necesario
-      // pero con GoRouter refreshListenable debería ser automático.
+    if (mounted) {
+      setState(() => _isLoading = false);
     }
   }
 
@@ -97,7 +98,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.error_outline, color: AppColors.error),
+                          const Icon(
+                            Icons.error_outline,
+                            color: AppColors.error,
+                          ),
                           const SizedBox(width: 8),
                           Expanded(
                             child: Text(
@@ -146,8 +150,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   // Login button
                   CustomButton(
                     text: 'Iniciar Sesión',
-                    isLoading: authState.isLoading,
-                    onPressed: _handleLogin,
+                    isLoading: _isLoading,
+                    onPressed: _isLoading ? null : _handleLogin,
                   ),
                   const SizedBox(height: 16),
 

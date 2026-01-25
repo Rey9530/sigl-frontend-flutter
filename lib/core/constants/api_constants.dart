@@ -10,6 +10,8 @@ class ApiConstants {
   static const String logout = '/auth/logout';
   static const String refreshToken = '/auth/refresh';
   static const String profile = '/auth/profile';
+  static const String updatePassword = '/auth/password';
+  static const String updateProfile = '/auth/perfil';
 
   // Paquetes endpoints
   static const String paquetes = '/paquetes';
@@ -25,6 +27,8 @@ class ApiConstants {
   static const String recepciones = '/recepciones';
   static const String recepcionesEstadisticas = '/recepciones/estadisticas';
   static const String recepcionesPendientes = '/recepciones/pendientes';
+  static const String recepcionesExtraer = '/recepciones/extraer';
+  static const String recepcionesRegistrar = '/recepciones/registrar';
   static String recepcionDetalle(int id) => '/recepciones/$id';
 
   // Entregas endpoints

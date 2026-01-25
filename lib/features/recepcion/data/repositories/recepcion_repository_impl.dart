@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/errors/failures.dart';
 import '../../domain/entities/recepcion_paquete.dart';
+import '../../domain/entities/datos_vineta_extraidos.dart';
 import '../datasources/recepcion_remote_datasource.dart';
 
 abstract class RecepcionRepository {
@@ -18,6 +19,16 @@ abstract class RecepcionRepository {
   Future<Either<Failure, RecepcionPaquete>> actualizarCostoEnvio(
     int recepcionId,
     double costoEnvio,
+  );
+
+  /// Extrae datos de la viñeta usando OCR sin guardar en BD
+  Future<Either<Failure, DatosVinetaExtraidos>> extraerDatosVineta(
+    File imagen,
+  );
+
+  /// Registra una recepción con datos verificados por el usuario
+  Future<Either<Failure, RecepcionPaquete>> registrarRecepcionConfirmada(
+    RegistrarRecepcionRequest request,
   );
 }
 
@@ -53,6 +64,32 @@ class RecepcionRepositoryImpl implements RecepcionRepository {
       final result = await _remoteDataSource.actualizarCostoEnvio(
         recepcionId,
         costoEnvio,
+      );
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure(message: _extractErrorMessage(e)));
+    }
+  }
+
+  @override
+  Future<Either<Failure, DatosVinetaExtraidos>> extraerDatosVineta(
+    File imagen,
+  ) async {
+    try {
+      final result = await _remoteDataSource.extraerDatosVineta(imagen);
+      return Right(result);
+    } catch (e) {
+      return Left(ServerFailure(message: _extractErrorMessage(e)));
+    }
+  }
+
+  @override
+  Future<Either<Failure, RecepcionPaquete>> registrarRecepcionConfirmada(
+    RegistrarRecepcionRequest request,
+  ) async {
+    try {
+      final result = await _remoteDataSource.registrarRecepcionConfirmada(
+        request,
       );
       return Right(result);
     } catch (e) {

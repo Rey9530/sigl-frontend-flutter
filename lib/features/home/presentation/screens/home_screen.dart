@@ -96,7 +96,9 @@ class HomeScreen extends ConsumerWidget {
               PopupMenuButton<String>(
                 icon: const Icon(Icons.more_vert, color: Colors.white),
                 onSelected: (value) async {
-                  if (value == 'logout') {
+                  if (value == 'profile') {
+                    context.push('/profile');
+                  } else if (value == 'logout') {
                     await ref.read(authStateProvider.notifier).logout();
                   }
                 },
@@ -222,7 +224,9 @@ class HomeScreen extends ConsumerWidget {
         elevation: 8,
         shadowColor: Colors.black12,
         onDestinationSelected: (index) {
-          // TODO: Implementar navegación
+          if (index == 2) {
+            context.push('/profile');
+          }
         },
         destinations: const [
           NavigationDestination(

@@ -122,18 +122,72 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, User>> checkAuthStatus() async {
     try {
       final token = await secureStorage.read(key: AppConstants.tokenKey);
-      final userData = await secureStorage.read(key: AppConstants.userKey);
 
-      if (token == null || userData == null) {
+      if (token == null) {
         return const Left(AuthFailure(message: 'No hay sesión activa'));
       }
 
-      final userJson = jsonDecode(userData) as Map<String, dynamic>;
-      final userModel = UserModel.fromJson(userJson);
+      // Validar token contra backend
+      final userModel = await remoteDataSource.getProfile();
+
+      // Actualizar datos del usuario en storage
+      await secureStorage.write(
+        key: AppConstants.userKey,
+        value: jsonEncode(userModel.toJson()),
+      );
 
       return Right(userModel.toEntity());
+    } on DioException catch (e) {
+      // Token inválido o expirado - limpiar storage
+      if (e.response?.statusCode == 401) {
+        await secureStorage.delete(key: AppConstants.tokenKey);
+        await secureStorage.delete(key: AppConstants.userKey);
+        return const Left(AuthFailure(message: 'Sesión expirada'));
+      }
+      return Left(ServerFailure(message: e.message ?? 'Error de conexión'));
     } catch (e) {
       return const Left(AuthFailure(message: 'Error al verificar sesión'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updatePassword(
+      String passwordActual, String passwordNueva) async {
+    try {
+      await remoteDataSource.updatePassword(passwordActual, passwordNueva);
+      return const Right(null);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) {
+        final message =
+            e.response?.data['message'] ?? 'La contraseña actual es incorrecta';
+        return Left(ValidationFailure(message: message));
+      }
+      return Left(ServerFailure(message: e.message ?? 'Error del servidor'));
+    } catch (e) {
+      return const Left(UnknownFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, User>> updateProfile(String nombre) async {
+    try {
+      final userModel = await remoteDataSource.updateProfile(nombre);
+
+      // Actualizar datos del usuario en storage
+      await secureStorage.write(
+        key: AppConstants.userKey,
+        value: jsonEncode(userModel.toJson()),
+      );
+
+      return Right(userModel.toEntity());
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) {
+        final message = e.response?.data['message'] ?? 'Error de validación';
+        return Left(ValidationFailure(message: message));
+      }
+      return Left(ServerFailure(message: e.message ?? 'Error del servidor'));
+    } catch (e) {
+      return const Left(UnknownFailure());
     }
   }
 }

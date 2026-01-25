@@ -5,9 +5,12 @@ import 'package:go_router/go_router.dart';
 import '../features/auth/presentation/providers/auth_provider.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
 import '../features/auth/presentation/screens/register_screen.dart';
+import '../features/auth/presentation/screens/profile_screen.dart';
 import '../features/home/presentation/screens/home_screen.dart';
 import '../features/recepcion/presentation/screens/captura_vineta_screen.dart';
 import '../features/recepcion/presentation/screens/confirmacion_screen.dart';
+import '../features/recepcion/presentation/screens/verificacion_datos_screen.dart';
+import '../features/recepcion/presentation/screens/confirmacion_cobro_screen.dart';
 import '../features/caja/presentation/screens/pendientes_screen.dart';
 import '../features/entrega/presentation/screens/captura_entrega_screen.dart';
 import '../features/entrega/presentation/screens/confirmacion_entrega_screen.dart';
@@ -18,8 +21,11 @@ class AppRoutes {
   static const String login = '/login';
   static const String register = '/register';
   static const String home = '/home';
+  static const String profile = '/profile';
   // Recepcion routes
   static const String recepcionCaptura = '/recepcion/captura';
+  static const String recepcionVerificacion = '/recepcion/verificacion';
+  static const String recepcionCobro = '/recepcion/cobro';
   static const String recepcionConfirmacion = '/recepcion/confirmacion';
   // Entrega routes
   static const String entregaCaptura = '/entrega/captura';
@@ -78,11 +84,26 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: 'home',
         builder: (context, state) => const HomeScreen(),
       ),
+      GoRoute(
+        path: AppRoutes.profile,
+        name: 'profile',
+        builder: (context, state) => const ProfileScreen(),
+      ),
       // Recepcion routes
       GoRoute(
         path: AppRoutes.recepcionCaptura,
         name: 'recepcion-captura',
         builder: (context, state) => const CapturaVinetaScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.recepcionVerificacion,
+        name: 'recepcion-verificacion',
+        builder: (context, state) => const VerificacionDatosScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.recepcionCobro,
+        name: 'recepcion-cobro',
+        builder: (context, state) => const ConfirmacionCobroScreen(),
       ),
       GoRoute(
         path: AppRoutes.recepcionConfirmacion,
